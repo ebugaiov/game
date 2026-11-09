@@ -1,0 +1,10 @@
+node_modules
+.next
+out
+build
+coverage
+src/db/migrations
+legacy
+index.html
+AGENTS.md
+pnpm-lock.yaml

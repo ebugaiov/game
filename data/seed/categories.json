@@ -1,0 +1,86 @@
+[
+  {
+    "id": "huvudsats",
+    "name": "Huvudsats (V2-regeln)",
+    "color": "#0ea5e9",
+    "icon": "⚡",
+    "sortOrder": 0
+  },
+  {
+    "id": "bisats",
+    "name": "Bisats (BIFF-regeln)",
+    "color": "#a855f7",
+    "icon": "🔗",
+    "sortOrder": 1
+  },
+  {
+    "id": "verb1_2",
+    "name": "Verb 1 & 2 (Maskiner)",
+    "color": "#ec4899",
+    "icon": "1️⃣",
+    "sortOrder": 2
+  },
+  {
+    "id": "supinum",
+    "name": "Supinum & Perfekt",
+    "color": "#f97316",
+    "icon": "3️⃣",
+    "sortOrder": 3
+  },
+  {
+    "id": "partikelverb",
+    "name": "Partikelverb (Montera)",
+    "color": "#eab308",
+    "icon": "🎯",
+    "sortOrder": 4
+  },
+  {
+    "id": "passiv_form",
+    "name": "Passiv s-form (Skärs)",
+    "color": "#06b6d4",
+    "icon": "⚙️",
+    "sortOrder": 5
+  },
+  {
+    "id": "substantiv",
+    "name": "Substantiv & Verktyg",
+    "color": "#10b981",
+    "icon": "📦",
+    "sortOrder": 6
+  },
+  {
+    "id": "adverbial",
+    "name": "Adverbial (SRT-regeln)",
+    "color": "#84cc16",
+    "icon": "📍",
+    "sortOrder": 7
+  },
+  {
+    "id": "subjekt_objekt",
+    "name": "Subjekt & Objekt",
+    "color": "#6366f1",
+    "icon": "👤",
+    "sortOrder": 8
+  },
+  {
+    "id": "satsverbial",
+    "name": "Satsverbial (Säkerhet)",
+    "color": "#d946ef",
+    "icon": "🚫",
+    "sortOrder": 9
+  },
+  {
+    "id": "fundamentet",
+    "name": "Fundamentet i Order",
+    "color": "#f43f5e",
+    "icon": "🏛️",
+    "sortOrder": 10
+  },
+  {
+    "id": "masterclass",
+    "name": "Masterclass GY25",
+    "color": "#fecc00",
+    "icon": "👑",
+    "sortOrder": 11
+  }
+]

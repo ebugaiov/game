@@ -1,0 +1,1614 @@
+<!DOCTYPE html>
+<html lang="sv" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Industrins Svenska - Grammatik & Satslära i Verkstaden (GY25)</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            sweBlue: '#004b87',
+            sweYellow: '#fecc00',
+            indDark: '#070b14',
+            indPanel: '#0f172a',
+            indCyan: '#06b6d4',
+            indAmber: '#f59e0b',
+            indOrange: '#f97316',
+            indPurple: '#a855f7',
+            indEmerald: '#10b981'
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- FontAwesome Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+    html, body {
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      background-color: #050811;
+      color: #f8fafc;
+      overflow-x: hidden;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* REALISTIC SWEDISH FLAG BACKGROUND WITH FABRIC WAVE & SHADOW overlay */
+    .swedish-flag-container {
+      position: fixed;
+      inset: 0;
+      z-index: -20;
+      background-color: #003e73;
+      overflow: hidden;
+    }
+    .flag-yellow-h {
+      position: absolute;
+      top: 38%;
+      left: 0;
+      right: 0;
+      height: 24%;
+      background-color: #fecc00;
+      box-shadow: 0 0 50px rgba(254, 204, 0, 0.4);
+    }
+    .flag-yellow-v {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 28%;
+      width: 16%;
+      background-color: #fecc00;
+      box-shadow: 0 0 50px rgba(254, 204, 0, 0.4);
+    }
+    .flag-fabric-texture {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 30%, rgba(255,255,255,0.18) 0%, rgba(0,0,0,0.7) 85%),
+        repeating-linear-gradient(45deg, rgba(0,0,0,0.08) 0px, rgba(0,0,0,0.08) 2px, transparent 2px, transparent 5px);
+      mix-blend-mode: overlay;
+    }
+    .flag-wave-anim {
+      position: absolute;
+      inset: -20%;
+      background: linear-gradient(115deg, transparent 0%, rgba(6, 182, 212, 0.15) 25%, rgba(0,0,0,0.5) 50%, rgba(254, 204, 0, 0.12) 75%, transparent 100%);
+      background-size: 200% 200%;
+      animation: flagWave 18s ease-in-out infinite alternate;
+      pointer-events: none;
+    }
+    @keyframes flagWave {
+      0% { background-position: 0% 0%; transform: scale(1) skewX(0deg); }
+      50% { background-position: 100% 100%; transform: scale(1.02) skewX(1.5deg); }
+      100% { background-position: 0% 50%; transform: scale(1) skewX(-1.5deg); }
+    }
+
+    /* DARK TRANSMITTANT BACKDROP FOR MAX CONTRAST & LEGIBILITY */
+    .ui-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: -10;
+      background: rgba(4, 8, 19, 0.82);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+
+    /* GLASSMORPHISM UI PANELS */
+    .glass-panel {
+      background: rgba(15, 23, 42, 0.88);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 10px 32px rgba(0, 0, 0, 0.5);
+    }
+    .glass-panel-glow {
+      background: rgba(15, 23, 42, 0.92);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(6, 182, 212, 0.45);
+      box-shadow: 0 0 30px rgba(6, 182, 212, 0.25);
+    }
+    .glass-card {
+      background: rgba(30, 41, 59, 0.75);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* GLOW EFFECTS & PULSE */
+    .glow-yellow { box-shadow: 0 0 25px rgba(254, 204, 0, 0.4); }
+    .glow-cyan { box-shadow: 0 0 25px rgba(6, 182, 212, 0.4); }
+
+    @keyframes pulseTurn {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 15px rgba(254, 204, 0, 0.4); }
+      50% { transform: scale(1.015); box-shadow: 0 0 30px rgba(254, 204, 0, 0.85); }
+    }
+    .active-turn-pulse {
+      animation: pulseTurn 2s infinite ease-in-out;
+    }
+
+    /* TICKER POINTER ANIMATION */
+    .wheel-pointer-wrapper {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 30;
+      pointer-events: none;
+    }
+    .wheel-pointer {
+      width: 0;
+      height: 0;
+      border-left: 18px solid transparent;
+      border-right: 18px solid transparent;
+      border-top: 32px solid #fecc00;
+      filter: drop-shadow(0px 6px 10px rgba(0,0,0,0.9));
+      transform-origin: top center;
+      transition: transform 0.05s ease-out;
+    }
+    .wheel-pointer.tick-flex {
+      transform: rotate(-16deg) scale(1.1);
+    }
+
+    /* CUSTOM SCROLLBAR */
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #070b14; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #06b6d4; }
+  </style>
+</head>
+<body class="p-2 sm:p-4 md:p-6 text-slate-100 flex flex-col min-h-screen relative">
+
+  <!-- REALISTIC SWEDISH FLAG BACKGROUND -->
+  <div class="swedish-flag-container">
+    <div class="flag-yellow-h"></div>
+    <div class="flag-yellow-v"></div>
+    <div class="flag-fabric-texture"></div>
+    <div class="flag-wave-anim"></div>
+  </div>
+  <div class="ui-backdrop"></div>
+
+  <!-- CONFETTI CANVAS FOR VICTORY -->
+  <canvas id="confettiCanvas" class="fixed inset-0 pointer-events-none z-50 hidden"></canvas>
+
+  <!-- TOP HEADER TOOLBAR -->
+  <header class="max-w-7xl w-full mx-auto mb-3 flex flex-col sm:flex-row items-center justify-between gap-3 glass-panel p-3.5 sm:p-4 rounded-2xl shadow-2xl">
+    <div class="flex items-center gap-3">
+      <div class="w-12 h-12 rounded-xl bg-gradient-to-tr from-cyan-600 via-amber-400 to-yellow-400 flex items-center justify-center text-2xl shadow-lg glow-yellow">
+        ⚙️
+      </div>
+      <div>
+        <h1 class="text-xl sm:text-2xl font-black tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-200 to-cyan-300">
+          Industrins Svenska
+        </h1>
+        <p class="text-xs text-slate-300 font-medium flex items-center gap-2">
+          <span>Grammatik & Satslära i Verkstaden</span>
+          <span class="px-2 py-0.5 rounded-full bg-cyan-950 border border-cyan-500/40 text-cyan-300 font-mono text-[10px]">GY25 Standard</span>
+        </p>
+      </div>
+    </div>
+
+    <!-- Controls Toolbar Buttons -->
+    <div class="flex items-center gap-2 flex-wrap justify-center">
+      <!-- Match Timer Badge -->
+      <div id="headerTimerBadge" class="hidden flex items-center gap-1.5 px-3 py-2 rounded-xl bg-amber-950/90 border border-amber-500/50 text-xs text-amber-300 font-mono font-bold">
+        <i class="fa-solid fa-clock text-amber-400 animate-pulse"></i>
+        <span id="headerTimerText">10:00</span>
+      </div>
+
+      <button onclick="toggleFullscreen()" class="px-3.5 py-2 rounded-xl bg-slate-800/90 hover:bg-slate-700 border border-slate-600 transition flex items-center gap-1.5 text-xs font-bold text-yellow-300">
+        <span id="fsIcon">⛶</span> <span id="fsLabel" class="hidden sm:inline">Helbild</span>
+      </button>
+      <button id="btnSoundToggle" onclick="toggleSound()" class="px-3 py-2 rounded-xl glass-card hover:bg-slate-700 transition flex items-center gap-1.5 text-xs font-semibold text-slate-200">
+        <span id="soundIcon">🔊</span> <span id="soundLabel" class="hidden sm:inline">Ljud På</span>
+      </button>
+      <button onclick="openRulesModal()" class="px-3 py-2 rounded-xl bg-indigo-600/40 hover:bg-indigo-600/60 border border-indigo-400/40 transition flex items-center gap-1.5 text-xs font-semibold text-indigo-200">
+        📖 Regelbok & Satslära
+      </button>
+      <button onclick="openSetupModal()" class="px-3 py-2 rounded-xl bg-yellow-500/30 hover:bg-yellow-500/50 border border-yellow-400/50 transition flex items-center gap-1.5 text-xs font-semibold text-yellow-200">
+        ⚙️ Spelare & Inställningar
+      </button>
+    </div>
+  </header>
+
+  <!-- PROMINENT ACTIVE PLAYER TURN BANNER -->
+  <div id="activeTurnBanner" class="max-w-7xl w-full mx-auto mb-4 p-3.5 rounded-2xl glass-panel border-2 border-yellow-400/80 active-turn-pulse flex items-center justify-between gap-4">
+    <div class="flex items-center gap-3">
+      <div id="turnBadgeIcon" class="w-11 h-11 rounded-xl bg-yellow-400 text-slate-950 font-black flex items-center justify-center text-xl shadow-md">
+        ⚙️
+      </div>
+      <div>
+        <span class="text-[10px] font-black uppercase tracking-widest text-yellow-300 block">AKTIV SPELARE</span>
+        <h2 id="turnBannerText" class="text-base sm:text-xl font-extrabold text-slate-100">
+          DET ÄR SPELARE 1:S TUR!
+        </h2>
+      </div>
+    </div>
+
+    <div class="flex items-center gap-3">
+      <button id="btnTriggerBonus" onclick="openBonusQuestionModal()" class="hidden px-3.5 py-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-black text-xs shadow-md transition active:scale-95 flex items-center gap-1.5">
+        <span>⭐ EXPERT-BONUS (+1000 Coins)</span>
+      </button>
+
+      <div class="text-right">
+        <span id="turnRoundLabel" class="text-xs font-bold px-3 py-1.5 rounded-xl bg-slate-900/90 text-yellow-300 border border-yellow-500/40">
+          Runda 1
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN GAME CONTENT -->
+  <main class="max-w-7xl w-full mx-auto flex-1 flex flex-col gap-5">
+
+    <!-- LEADERBOARD BAR FOR UP TO 20 PLAYERS -->
+    <div id="playerBar" class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2.5">
+      <!-- Dynamic Player Cards injected via JS -->
+    </div>
+
+    <!-- PLAYFIELD: LOTTERY WHEEL & BOARD TRACK -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+
+      <!-- LEFT: REALISTIC LOTTERY WHEEL SECTION -->
+      <div class="lg:col-span-5 glass-panel p-4 sm:p-5 rounded-3xl flex flex-col items-center justify-center relative">
+        <div class="w-full flex items-center justify-between mb-2">
+          <span class="text-xs font-bold uppercase tracking-widest text-cyan-400 flex items-center gap-1.5">
+            <span class="w-2 h-2 rounded-full bg-cyan-400 animate-ping"></span> Lotterihjulet
+          </span>
+          <span id="diffBadge" class="text-xs font-black px-2.5 py-1 rounded-full bg-yellow-500/20 text-yellow-300 border border-yellow-500/40">
+            Nivå: Alla
+          </span>
+        </div>
+
+        <!-- Wheel Canvas with Ticker Pointer -->
+        <div class="relative my-2 flex items-center justify-center">
+          <div class="wheel-pointer-wrapper">
+            <div id="wheelPointer" class="wheel-pointer"></div>
+          </div>
+          <canvas id="wheelCanvas" width="360" height="360" class="max-w-full h-auto cursor-pointer rounded-full shadow-2xl transition duration-300 hover:scale-[1.01]"></canvas>
+          <div class="absolute w-16 h-16 rounded-full bg-slate-950 border-4 border-yellow-400 shadow-xl flex items-center justify-center text-2xl font-extrabold text-yellow-300 pointer-events-none z-10">
+            ⚙️
+          </div>
+        </div>
+
+        <!-- Spin Action Controls -->
+        <div class="w-full mt-3 flex flex-col gap-2">
+          <button id="btnSpin" onclick="spinWheel()" class="w-full py-3.5 px-6 rounded-2xl bg-gradient-to-r from-yellow-500 via-amber-500 to-yellow-600 hover:from-yellow-400 hover:to-amber-400 text-slate-950 font-black text-sm uppercase tracking-wider shadow-lg glow-yellow transition active:scale-95 flex items-center justify-center gap-2">
+            <span>🎲</span> Snurra Lotterihjulet!
+          </button>
+          <p id="spinNotice" class="text-center text-xs text-slate-300 font-medium h-5">
+            Klicka på knappen för att starta hjulet!
+          </p>
+        </div>
+      </div>
+
+      <!-- RIGHT: BOARD TRACK & CATEGORIES QUICK CHOICE -->
+      <div class="lg:col-span-7 glass-panel p-4 sm:p-5 rounded-3xl flex flex-col gap-4">
+        <div>
+          <h2 class="text-lg font-bold text-slate-100 flex items-center gap-2">
+            🗺️ Verkstadsbanan (20 Rutor) & Snabbval
+          </h2>
+          <p class="text-xs text-slate-300">Snurra hjulet eller klicka på en kategori direkt. Rätt svar ger Coins och flyttar pjäsen framåt!</p>
+        </div>
+
+        <!-- Board Track (20 Tiles) -->
+        <div id="boardTrack" class="grid grid-cols-4 sm:grid-cols-10 gap-1.5 p-2.5 bg-slate-950/70 rounded-2xl border border-slate-800">
+          <!-- 20 Board tiles injected via JS -->
+        </div>
+
+        <!-- Category Direct Selection Grid -->
+        <div class="mt-1">
+          <div class="flex items-center justify-between mb-2">
+            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-300">12 Industrigrammatiska Kategorier:</h3>
+            <button onclick="openManualScoreModal()" class="text-[10px] text-cyan-400 hover:underline font-semibold">
+              <i class="fa-solid fa-pen-to-square"></i> Manuell Coinsjustering
+            </button>
+          </div>
+          <div id="categoryCardsGrid" class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+            <!-- 12 Category Cards generated via JS -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- QUESTION MODAL -->
+  <div id="questionModal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 flex items-center justify-center p-3 sm:p-4 hidden">
+    <div class="glass-panel w-full max-w-2xl rounded-3xl p-5 sm:p-7 shadow-2xl border border-yellow-500/40 flex flex-col gap-4 max-h-[92vh] overflow-y-auto">
+
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between border-b border-slate-700/80 pb-3 flex-wrap gap-2">
+        <div class="flex items-center gap-2 flex-wrap">
+          <span id="qCategoryBadge" class="px-3 py-1 rounded-full text-xs font-black uppercase tracking-wider bg-yellow-500/20 text-yellow-300 border border-yellow-500/40">
+            Kategori
+          </span>
+          <span id="qDiffBadge" class="px-3 py-1 rounded-full text-xs font-black bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+            Nivå: Lätt
+          </span>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <!-- 50/50 Lifeline Button -->
+          <button id="btnFiftyFifty" onclick="useFiftyFifty()" class="px-3 py-1 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-extrabold text-xs rounded-xl shadow border border-purple-400/50 transition active:scale-95 flex items-center gap-1">
+            <span>✨ 50/50 Hjälp</span>
+          </button>
+          <span id="qPointsBadge" class="text-xs font-bold text-amber-400 bg-amber-500/10 px-2.5 py-1 rounded-lg border border-amber-500/30">
+            +100 Coins 🪙
+          </span>
+        </div>
+      </div>
+
+      <!-- Turn Banner in Question Modal -->
+      <div id="qTurnBanner" class="p-2.5 rounded-xl bg-slate-900 border border-yellow-400/50 flex items-center justify-between gap-2">
+        <div class="flex items-center gap-2">
+          <span class="w-6 h-6 rounded-md bg-yellow-400 text-slate-950 font-black flex items-center justify-center text-xs" id="qTurnPawn">⚙️</span>
+          <span class="text-xs font-bold text-yellow-300 uppercase tracking-wide" id="qTurnPlayerName">SVARAS JUST NU AV: SPELARE 1</span>
+        </div>
+        <span id="qTurnScoreText" class="text-xs font-mono font-bold text-amber-400">0 Coins</span>
+      </div>
+
+      <!-- Question Text -->
+      <div>
+        <h3 id="qText" class="text-base sm:text-lg font-bold text-slate-100 leading-snug mb-2">
+          Frågan läses in...
+        </h3>
+        <p id="qSubText" class="text-xs text-yellow-200/90 font-medium bg-slate-900/80 p-2.5 rounded-xl border border-slate-800">
+          Välj det mest grammatiskt korrekta alternativet nedan:
+        </p>
+      </div>
+
+      <!-- Options Container -->
+      <div id="qOptionsContainer" class="grid grid-cols-1 gap-2.5">
+        <!-- 4 Option buttons -->
+      </div>
+
+      <!-- Pedagogical Explanation Banner -->
+      <div id="explanationBanner" class="hidden p-4 rounded-2xl bg-indigo-950/90 border border-indigo-400/50 flex flex-col gap-2">
+        <div class="flex items-center gap-2 text-indigo-300 text-xs font-bold uppercase tracking-wider">
+          <span>💡</span> Pedagogisk Förklaring & Grammatikregel:
+        </div>
+        <p id="explanationText" class="text-xs sm:text-sm text-slate-200 leading-relaxed">
+          Förklaring visas här...
+        </p>
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="flex items-center justify-end pt-2">
+        <button id="btnNextQuestion" onclick="closeQuestionModal()" class="hidden px-6 py-3 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white text-xs sm:text-sm font-black uppercase tracking-wider shadow-lg transition active:scale-95">
+          Nästa Spelare ➔
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXPERT BONUS QUESTION MODAL -->
+  <div id="bonusQuestionModal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="glass-panel w-full max-w-2xl rounded-3xl p-6 space-y-4 border border-amber-500/60 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-amber-500/30 pb-3">
+        <span class="px-3 py-1 bg-amber-500/20 border border-amber-400/40 text-amber-300 rounded-full text-xs font-black uppercase tracking-wider flex items-center gap-1.5">
+          ⭐ INDUSTRIELL EXPERT-BONUS (+1000 COINS 🪙)
+        </span>
+        <button onclick="closeBonusModal()" class="text-slate-400 hover:text-white text-lg font-bold">✕</button>
+      </div>
+
+      <div class="space-y-2">
+        <span id="bonusPlayerText" class="text-xs font-bold text-amber-400 uppercase block">Bonusfråga för Spelare 1</span>
+        <p id="bonusQuestionText" class="text-base sm:text-lg font-black text-white leading-relaxed">
+          Bonusfrågan laddas...
+        </p>
+      </div>
+
+      <div class="space-y-2">
+        <h4 class="text-xs font-bold text-amber-400 uppercase">Välj rätt grammatiskt svar (+1000 Coins / 0 Coins):</h4>
+        <div id="bonusOptionsContainer" class="grid grid-cols-1 gap-2.5">
+        </div>
+      </div>
+
+      <div id="bonusFeedbackBanner" class="hidden p-3 rounded-xl font-bold text-xs text-center border">
+      </div>
+
+      <div class="flex justify-end pt-2">
+        <button id="btnNextBonus" onclick="closeBonusModal()" class="hidden px-6 py-2.5 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 hover:from-amber-400 hover:to-orange-400 text-slate-950 font-black text-xs uppercase tracking-wider">
+          Fortsätt Spelet ➔
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SETUP & PLAYERS MODAL (UP TO 20 PLAYERS) -->
+  <div id="setupModal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 flex items-center justify-center p-4">
+    <div class="glass-panel w-full max-w-2xl rounded-3xl p-6 shadow-2xl border border-yellow-500/40 flex flex-col gap-5 max-h-[90vh] overflow-y-auto">
+      <div class="text-center border-b border-slate-700/60 pb-3">
+        <h2 class="text-2xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-300 to-cyan-300">
+          ⚙️ Spelinställningar & Spelare
+        </h2>
+        <p class="text-xs text-slate-300 mt-1">Registrera upp till 20 individuella spelare, ställ in tid och svårighetsgrad</p>
+      </div>
+
+      <!-- Match Time Setting -->
+      <div>
+        <label class="block text-xs font-bold uppercase text-slate-300 mb-1.5">⏱️ Matchtid / Tidsbegränsning:</label>
+        <select id="selectTimeLimit" class="w-full bg-slate-900 border border-slate-700 text-white font-bold text-xs rounded-xl px-3.5 py-2.5 outline-none focus:border-yellow-400 transition">
+          <option value="0">♾️ Obegränsad tid (Ingen timer)</option>
+          <option value="5">⏱️ 5 minuter (Snabbmatch)</option>
+          <option value="10" selected>⏱️ 10 minuter (Standard)</option>
+          <option value="15">⏱️ 15 minuter</option>
+          <option value="20">⏱️ 20 minuter</option>
+          <option value="30">⏱️ 30 minuter (Lång match)</option>
+        </select>
+      </div>
+
+      <!-- Quick Player Preset Buttons -->
+      <div>
+        <label class="block text-xs font-bold uppercase text-slate-300 mb-1.5">Snabbval Antal Spelare:</label>
+        <div class="grid grid-cols-4 gap-2">
+          <button type="button" onclick="presetPlayers(2)" class="py-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-600 font-bold text-xs text-slate-200">2 Spelare</button>
+          <button type="button" onclick="presetPlayers(4)" class="py-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-600 font-bold text-xs text-slate-200">4 Spelare</button>
+          <button type="button" onclick="presetPlayers(8)" class="py-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-600 font-bold text-xs text-slate-200">8 Spelare</button>
+          <button type="button" onclick="presetPlayers(12)" class="py-2 rounded-xl bg-slate-800 hover:bg-slate-700 border border-slate-600 font-bold text-xs text-slate-200">12 Spelare</button>
+        </div>
+      </div>
+
+      <!-- Individual Player List Inputs (1 to 20) -->
+      <div>
+        <div class="flex items-center justify-between mb-2">
+          <label class="text-xs font-bold uppercase text-slate-300">Spelarnamn, Emoji & Färg (Max 20 st):</label>
+          <span id="playerCountBadge" class="text-xs font-extrabold text-yellow-400 bg-yellow-500/20 px-2 py-0.5 rounded-md border border-yellow-500/30">
+            2 / 20 Spelare
+          </span>
+        </div>
+
+        <div id="playerInputsContainer" class="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-52 overflow-y-auto pr-1">
+          <!-- Dynamic Player Inputs generated via JS -->
+        </div>
+
+        <button type="button" id="btnAddPlayer" onclick="addSinglePlayerInput()" class="w-full mt-2 py-2.5 rounded-xl border border-dashed border-yellow-400/60 bg-yellow-500/10 hover:bg-yellow-500/20 text-yellow-300 font-bold text-xs transition flex items-center justify-center gap-1.5">
+          ➕ Lägg till spelare
+        </button>
+      </div>
+
+      <!-- Difficulty Selection -->
+      <div>
+        <label class="block text-xs font-bold uppercase text-slate-300 mb-1.5">Svårighetsgrad:</label>
+        <div class="grid grid-cols-5 gap-1.5">
+          <button type="button" onclick="selectDifficulty('Alla')" class="diff-btn py-2 px-1 rounded-xl text-xs font-bold border border-slate-700 bg-slate-800 text-slate-200" data-diff="Alla">Alla</button>
+          <button type="button" onclick="selectDifficulty('Lätt')" class="diff-btn py-2 px-1 rounded-xl text-xs font-bold border border-slate-700 bg-slate-800 text-emerald-400" data-diff="Lätt">Lätt</button>
+          <button type="button" onclick="selectDifficulty('Medel')" class="diff-btn py-2 px-1 rounded-xl text-xs font-bold border border-slate-700 bg-slate-800 text-amber-400" data-diff="Medel">Medel</button>
+          <button type="button" onclick="selectDifficulty('Svår')" class="diff-btn py-2 px-1 rounded-xl text-xs font-bold border border-slate-700 bg-slate-800 text-orange-400" data-diff="Svår">Svår</button>
+          <button type="button" onclick="selectDifficulty('Expert')" class="diff-btn py-2 px-1 rounded-xl text-xs font-bold border border-slate-700 bg-slate-800 text-rose-400" data-diff="Expert">Expert</button>
+        </div>
+      </div>
+
+      <!-- Start Button -->
+      <button onclick="startGameFromSetup()" class="w-full py-3.5 rounded-2xl bg-gradient-to-r from-yellow-500 via-amber-500 to-yellow-600 hover:from-yellow-400 hover:to-amber-400 text-slate-950 font-black text-sm uppercase tracking-wider shadow-xl glow-yellow transition">
+        🚀 Starta "Industrins Svenska"!
+      </button>
+    </div>
+  </div>
+
+  <!-- GRAMMAR RULES MODAL -->
+  <div id="rulesModal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="glass-panel w-full max-w-3xl rounded-3xl p-6 shadow-2xl border border-yellow-500/40 flex flex-col gap-4 max-h-[85vh] overflow-y-auto">
+      <div class="flex items-center justify-between border-b border-slate-700/60 pb-3">
+        <h3 class="text-xl font-black text-yellow-300 flex items-center gap-2">
+          📖 Industriell Satslära & Grammatikguide
+        </h3>
+        <button onclick="closeRulesModal()" class="text-slate-400 hover:text-white font-bold text-lg">✕</button>
+      </div>
+
+      <div class="space-y-3.5 text-xs sm:text-sm text-slate-200">
+        <div class="p-3.5 rounded-xl bg-slate-900/90 border border-cyan-500/30">
+          <h4 class="font-bold text-cyan-400 text-sm mb-1">1. V2-regeln (Verb på plats 2 i Huvudsats)</h4>
+          <p class="leading-relaxed">I alla svenska huvudsatser måste verbet stå på <strong>andra platsen</strong>. Om du börjar med ett adverbial (t.ex. "Igår") kommer verbet före subjektet: <em>"Igår <u>ställde</u> operatören in fräsen."</em></p>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-slate-900/90 border border-purple-500/30">
+          <h4 class="font-bold text-purple-400 text-sm mb-1">2. BIFF-regeln (Satsverbial i Bisats)</h4>
+          <p class="leading-relaxed"><strong>BIFF</strong> = I <strong>B</strong>isats står <strong>I</strong>nte <strong>F</strong>öre <strong>F</strong>örsta verbet. Exempel: <em>"...eftersom svetsaren <u>inte</u> hade godkänd skyddsutrustning."</em></p>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-slate-900/90 border border-amber-500/30">
+          <h4 class="font-bold text-amber-400 text-sm mb-1">3. Passiv Form & Processbeskrivning</h4>
+          <p class="leading-relaxed">Inom industrin beskrivs ofta vad som görs med materialet utan att nämna vem som gör det. Det bildas med s-passiv: <em>"Plåten <u>skärs</u> med laser"</em> eller <em>"Hålet <u>borrades</u> igår"</em>.</p>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-slate-900/90 border border-emerald-500/30">
+          <h4 class="font-bold text-emerald-400 text-sm mb-1">4. Partikelverb i Maskindrift</h4>
+          <p class="leading-relaxed">Verb kombinerat med betoning på partikeln ändrar betydelsen helt: <em>"ställa <strong>IN</strong>"</em> (kalibrera), <em>"stänga <strong>AV</strong>"</em> (stoppa ström), <em>"koppla <strong>UR</strong>"</em> (avaktivera).</p>
+        </div>
+
+        <div class="p-3.5 rounded-xl bg-slate-900/90 border border-rose-500/30">
+          <h4 class="font-bold text-rose-400 text-sm mb-1">5. SRT-regeln (Adverbialens ordning)</h4>
+          <p class="leading-relaxed">Adverbial placeras i slutet av satsen enligt ordningen: <strong>Sätt</strong> ➔ <strong>Rum</strong> ➔ <strong>Tid</strong>. Exempel: <em>"Operatören mätte biten <u>noggrant</u> (Sätt) <u>i kontrollrummet</u> (Rum) <u>på morgonen</u> (Tid)."</em></p>
+        </div>
+      </div>
+
+      <div class="pt-2 text-right">
+        <button onclick="closeRulesModal()" class="px-5 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-bold text-xs uppercase tracking-wider">
+          Stäng
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- MANUAL SCORE ADJUSTMENT MODAL -->
+  <div id="manualScoreModal" class="fixed inset-0 bg-slate-950/85 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden">
+    <div class="glass-panel w-full max-w-md rounded-3xl p-6 space-y-4 border border-cyan-400/40">
+      <div class="flex items-center justify-between border-b border-slate-700/60 pb-3">
+        <h3 class="text-base font-bold text-white flex items-center gap-2">
+          <i class="fa-solid fa-pen-to-square text-cyan-400"></i> Manuell Coinsjustering
+        </h3>
+        <button onclick="closeManualScoreModal()" class="text-slate-400 hover:text-white text-lg font-bold">✕</button>
+      </div>
+
+      <div class="space-y-3">
+        <div>
+          <label class="text-xs font-semibold text-slate-300">Välj spelare:</label>
+          <select id="selectScorePlayer" class="w-full mt-1 bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white text-xs outline-none focus:border-cyan-400">
+          </select>
+        </div>
+
+        <div>
+          <label class="text-xs font-semibold text-slate-300">Ange nytt Coins-saldo:</label>
+          <input type="number" step="50" id="inputCustomScore" class="w-full mt-1 bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white text-xs outline-none focus:border-cyan-400">
+        </div>
+      </div>
+
+      <div class="flex gap-2 pt-2">
+        <button onclick="saveManualScore()" class="w-full py-2.5 bg-cyan-600 hover:bg-cyan-500 text-white font-bold text-xs rounded-xl shadow">
+          Spara Coins
+        </button>
+        <button onclick="closeManualScoreModal()" class="w-full py-2.5 bg-slate-800 hover:bg-slate-700 text-slate-300 font-bold text-xs rounded-xl">
+          Avbryt
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- VICTORY / GAME OVER MODAL -->
+  <div id="victoryModal" class="fixed inset-0 bg-slate-950/90 backdrop-blur-lg z-50 flex items-center justify-center p-4 hidden">
+    <div class="glass-panel w-full max-w-2xl rounded-3xl p-6 sm:p-8 text-center shadow-2xl border border-yellow-400/50 flex flex-col items-center gap-5">
+      <div class="w-20 h-20 rounded-full bg-gradient-to-tr from-yellow-400 to-amber-600 flex items-center justify-center text-4xl shadow-xl glow-yellow animate-bounce">
+        👑
+      </div>
+
+      <div>
+        <h2 id="victoryTitle" class="text-2xl sm:text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-200 to-yellow-400">
+          Spelet är avslutat!
+        </h2>
+        <p id="victorySubtitle" class="text-xs sm:text-sm text-slate-300 mt-1">
+          En mästerlig insats i Industrins Svenska & Verkstadssatslära!
+        </p>
+      </div>
+
+      <div id="podiumContainer" class="w-full grid grid-cols-1 sm:grid-cols-3 gap-3 my-2 max-h-60 overflow-y-auto">
+        <!-- Dynamic Leaderboard Podium -->
+      </div>
+
+      <button onclick="openSetupModal()" class="w-full py-4 rounded-2xl bg-gradient-to-r from-yellow-500 via-amber-500 to-yellow-600 hover:from-yellow-400 hover:to-amber-400 text-slate-950 font-black text-sm uppercase tracking-wider shadow-xl glow-yellow transition">
+        🔄 Ny Omgång / Spela Igen
+      </button>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT LOGIC -->
+  <script>
+    /* 1. AUDIO SYNTHESIZER (Web Audio API) */
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    let audioCtx = null;
+    let soundEnabled = true;
+
+    function initAudio() {
+      if (!audioCtx) audioCtx = new AudioContext();
+      if (audioCtx.state === 'suspended') audioCtx.resume();
+    }
+
+    function toggleSound() {
+      soundEnabled = !soundEnabled;
+      document.getElementById('soundIcon').innerText = soundEnabled ? '🔊' : '🔇';
+      document.getElementById('soundLabel').innerText = soundEnabled ? 'Ljud På' : 'Ljud Av';
+    }
+
+    function playSound(type) {
+      if (!soundEnabled) return;
+      try {
+        initAudio();
+        const now = audioCtx.currentTime;
+
+        if (type === 'tick') {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(620, now);
+          osc.frequency.exponentialRampToValueAtTime(190, now + 0.035);
+          gain.gain.setValueAtTime(0.14, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.035);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now);
+          osc.stop(now + 0.035);
+        } else if (type === 'correct') {
+          [523.25, 659.25, 783.99, 1046.50].forEach((freq, i) => {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, now + i * 0.07);
+            gain.gain.setValueAtTime(0.18, now + i * 0.07);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.07 + 0.2);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start(now + i * 0.07);
+            osc.stop(now + i * 0.07 + 0.2);
+          });
+        } else if (type === 'wrong') {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(160, now);
+          osc.frequency.linearRampToValueAtTime(95, now + 0.3);
+          gain.gain.setValueAtTime(0.2, now);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now);
+          osc.stop(now + 0.3);
+        } else if (type === 'victory') {
+          const notes = [523.25, 659.25, 783.99, 1046.50, 880, 1046.50];
+          const times = [0, 0.1, 0.2, 0.3, 0.5, 0.7];
+          notes.forEach((freq, i) => {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(freq, now + times[i]);
+            gain.gain.setValueAtTime(0.2, now + times[i]);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + times[i] + 0.25);
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            osc.start(now + times[i]);
+            osc.stop(now + times[i] + 0.25);
+          });
+        }
+      } catch (e) { console.error(e); }
+    }
+
+    /* 2. FULLSCREEN API HANDLER */
+    function toggleFullscreen() {
+      if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+        const docEl = document.documentElement;
+        if (docEl.requestFullscreen) docEl.requestFullscreen();
+        else if (docEl.webkitRequestFullscreen) docEl.webkitRequestFullscreen();
+      } else {
+        if (document.exitFullscreen) document.exitFullscreen();
+        else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+      }
+    }
+
+    document.addEventListener('fullscreenchange', updateFullscreenBtn);
+    document.addEventListener('webkitfullscreenchange', updateFullscreenBtn);
+
+    function updateFullscreenBtn() {
+      const isFS = !!(document.fullscreenElement || document.webkitFullscreenElement);
+      document.getElementById('fsIcon').innerText = isFS ? '↙️' : '⛶';
+      document.getElementById('fsLabel').innerText = isFS ? 'Avsluta helbild' : 'Helbild';
+    }
+
+    /* 3. CATEGORIES & EMOJIS & COLOR PALETTE */
+    const CATEGORIES = [
+      { id: 'huvudsats', name: 'Huvudsats (V2-regeln)', color: '#0ea5e9', icon: '⚡' },
+      { id: 'bisats', name: 'Bisats (BIFF-regeln)', color: '#a855f7', icon: '🔗' },
+      { id: 'verb1_2', name: 'Verb 1 & 2 (Maskiner)', color: '#ec4899', icon: '1️⃣' },
+      { id: 'supinum', name: 'Supinum & Perfekt', color: '#f97316', icon: '3️⃣' },
+      { id: 'partikelverb', name: 'Partikelverb (Montera)', color: '#eab308', icon: '🎯' },
+      { id: 'passiv_form', name: 'Passiv s-form (Skärs)', color: '#06b6d4', icon: '⚙️' },
+      { id: 'substantiv', name: 'Substantiv & Verktyg', color: '#10b981', icon: '📦' },
+      { id: 'adverbial', name: 'Adverbial (SRT-regeln)', color: '#84cc16', icon: '📍' },
+      { id: 'subjekt_objekt', name: 'Subjekt & Objekt', color: '#6366f1', icon: '👤' },
+      { id: 'satsverbial', name: 'Satsverbial (Säkerhet)', color: '#d946ef', icon: '🚫' },
+      { id: 'fundamentet', name: 'Fundamentet i Order', color: '#f43f5e', icon: '🏛️' },
+      { id: 'masterclass', name: 'Masterclass GY25', color: '#fecc00', icon: '👑' }
+    ];
+
+    const INDUSTRIAL_EMOJIS = ["⚙️", "🔧", "🏭", "🥽", "🤖", "⚡", "🔨", "🧪", "📐", "🛡️", "🧰", "📦"];
+
+    const PLAYER_PALETTE = [
+      { bg: 'bg-cyan-500', text: 'text-cyan-400', border: 'border-cyan-400', hex: '#06b6d4' },
+      { bg: 'bg-purple-500', text: 'text-purple-400', border: 'border-purple-400', hex: '#a855f7' },
+      { bg: 'bg-amber-400', text: 'text-amber-400', border: 'border-amber-400', hex: '#f59e0b' },
+      { bg: 'bg-emerald-500', text: 'text-emerald-400', border: 'border-emerald-400', hex: '#10b981' },
+      { bg: 'bg-rose-500', text: 'text-rose-400', border: 'border-rose-400', hex: '#f43f5e' },
+      { bg: 'bg-indigo-500', text: 'text-indigo-400', border: 'border-indigo-400', hex: '#6366f1' },
+      { bg: 'bg-yellow-400', text: 'text-yellow-400', border: 'border-yellow-400', hex: '#eab308' },
+      { bg: 'bg-fuchsia-500', text: 'text-fuchsia-400', border: 'border-fuchsia-400', hex: '#d946ef' },
+      { bg: 'bg-teal-500', text: 'text-teal-400', border: 'border-teal-400', hex: '#14b8a6' },
+      { bg: 'bg-orange-500', text: 'text-orange-400', border: 'border-orange-400', hex: '#f97316' },
+      { bg: 'bg-blue-500', text: 'text-blue-400', border: 'border-blue-400', hex: '#3b82f6' },
+      { bg: 'bg-lime-500', text: 'text-lime-400', border: 'border-lime-400', hex: '#84cc16' },
+      { bg: 'bg-red-500', text: 'text-red-400', border: 'border-red-400', hex: '#ef4444' },
+      { bg: 'bg-pink-500', text: 'text-pink-400', border: 'border-pink-400', hex: '#ec4899' },
+      { bg: 'bg-sky-400', text: 'text-sky-300', border: 'border-sky-300', hex: '#38bdf8' },
+      { bg: 'bg-violet-500', text: 'text-violet-400', border: 'border-violet-400', hex: '#8b5cf6' },
+      { bg: 'bg-amber-600', text: 'text-amber-500', border: 'border-amber-500', hex: '#d97706' },
+      { bg: 'bg-green-500', text: 'text-green-400', border: 'border-green-400', hex: '#22c55e' },
+      { bg: 'bg-orange-600', text: 'text-orange-500', border: 'border-orange-500', hex: '#ea580c' },
+      { bg: 'bg-cyan-600', text: 'text-cyan-500', border: 'border-cyan-500', hex: '#0891b2' }
+    ];
+
+    /* 4. QUESTION DATABASE (12 CATEGORIES) */
+    const QUESTION_DATABASE = [
+      // 1. Huvudsats (V2-regeln)
+      { id: 1, cat: 'huvudsats', diff: 'Lätt', q: "Vilken mening följer V2-regeln när fundamentet är tidsadverbialet 'Igår'?", options: ["Igår operatören ställde in CNC-svarven.", "Igår ställde operatören in CNC-svarven.", "Igår ställde in operatören CNC-svarven.", "Operatören igår ställde in CNC-svarven."], correct: 1, exp: "V2-regeln kräver att verbet ('ställde') alltid hamnar på 2:a platsen i en huvudsats." },
+      { id: 2, cat: 'huvudsats', diff: 'Medel', q: "Komplettera meningen: 'Efter skiftet [...] svetsteknikern alla verktyg.'", options: ["rengör", "han rengör", "rengjorde han", "rengöra"], correct: 0, exp: "När 'Efter skiftet' inleder meningen måste det finita verbet ('rengör') komma direkt på andra plats." },
+      { id: 3, cat: 'huvudsats', diff: 'Svår', q: "Identifiera meningen som BRYTER mot V2-regeln i verkstadssammanhang:", options: ["På fredagar underhålls alla fräsmaskiner.", "I mätlaboratoriet kontrollanten mätte hålets diameter.", "Plötsligt stoppades löpande bandet av nödstoppet.", "Nu monterar robotarmen den sista komponenten."], correct: 1, exp: "'I mätlaboratoriet kontrollanten mätte...' bryter mot V2. Verbet ('mätte') måste hamna på andra plats." },
+      { id: 4, cat: 'huvudsats', diff: 'Expert', q: "Vad kallas grammatiska omvandlingen när verbet hamnar före subjektet i: 'Igår startade operatören ugnen'?", options: ["Rak ordföljd", "Inversion (Omvänd ordföljd)", "Bisatsordföljd", "Passivering"], correct: 1, exp: "Inversion uppstår när fundamentet inte är subjektet, vilket flyttar verbet före subjektet." },
+
+      // 2. Bisats (BIFF-regeln)
+      { id: 5, cat: 'bisats', diff: 'Lätt', q: "Var placeras satsverbialet 'inte' i bisatsen: '...eftersom operatören [...] glasögonen.'?", options: ["hittade inte", "inte hittade", "hittade aldrig inte", "inte hade hittat inte"], correct: 1, exp: "BIFF-regeln: I Bisats står Inte Före Första verbet ('...eftersom operatören inte hittade...')." },
+      { id: 6, cat: 'bisats', diff: 'Medel', q: "Vilken bisats innehåller korrekt ordföljd enligt BIFF-regeln?", options: ["...när roboten kan inte lyfta plåten.", "...när roboten inte kan lyfta plåten.", "...när inte roboten kan lyfta plåten.", "...när kan inte roboten lyfta plåten."], correct: 1, exp: "Satsverbialet 'inte' placeras direkt före det finita hjälperbet 'kan'." },
+      { id: 7, cat: 'bisats', diff: 'Svår', q: "Vilket ord är en subjunktion (bisatsinledare) i: 'Produktionen stoppades eftersom slangen läckte'?", options: ["Produktionen", "stoppades", "eftersom", "läckte"], correct: 2, exp: "'Eftersom' inleder bisatsen 'eftersom slangen läckte'." },
+
+      // 3. Verb 1 & 2 (Infinitiv & Tempus för maskiner)
+      { id: 8, cat: 'verb1_2', diff: 'Lätt', q: "I vilken form står Verb 2 ('kalibrera') i meningen: 'Operatören måste kalibrera givaren'?", options: ["Presens", "Preteritum", "Infinitiv", "Supinum"], correct: 2, exp: "Efter det modala hjälpverbet 'måste' står huvudverbet alltid i infinitiv utan 'att'." },
+      { id: 9, cat: 'verb1_2', diff: 'Medel', q: "Identifiera Verb 1 i meningen: 'Svarvaren ska snart starta maskinen.'", options: ["ska", "snart", "starta", "maskinen"], correct: 0, exp: "'ska' är finit hjälpexpresensverb (Verb 1) på position 2." },
+      { id: 10, cat: 'verb1_2', diff: 'Svår', q: "Komplettera med rätt infinitivform: 'Roboten kan lätt [...] tunga plåtar.'", options: ["lyfta", "lyfter", "lyfte", "lyft"], correct: 0, exp: "Modala hjälpverb (kan) efterföljs av grundformen infinitiv ('lyfta')." },
+
+      // 4. Supinum & Perfekt (Genomförda moment)
+      { id: 11, cat: 'supinum', diff: 'Lätt', q: "Vilken är supinumformen av verbet 'att borra'?", options: ["borrar", "borrade", "borrat", "borrande"], correct: 2, exp: "Supinum slutar oftast på -t och bildar dåtid med hjälpverbet 'har' ('har borrat')." },
+      { id: 12, cat: 'supinum', diff: 'Medel', q: "Vad bildar supinum tillsammans med hjälpverbet 'har' eller 'hade'?", options: ["Perfekt och Pluskvamperfekt", "Presens och Preteritum", "Futurum", "Imperativ"], correct: 0, exp: "'har/hade' + supinum bildar sammansatta dåtidsformer (perfekt/pluskvamperfekt)." },
+      { id: 13, cat: 'supinum', diff: 'Svår', q: "Vilken mening använder korrekta supinumformen för verbet 'att gjuta'?", options: ["Gjutaren har gjutit alla detaljer.", "Gjutaren har gjöt alla detaljer.", "Gjutaren har gjuta alla detaljer.", "Gjutaren har gjutande detaljer."], correct: 0, exp: "'Gjutit' är den korrekta supinumformen av 'gjuta'." },
+
+      // 5. Partikelverb (Montera & Drift)
+      { id: 14, cat: 'partikelverb', diff: 'Lätt', q: "Vad kännetecknar ett partikelverb som 'stänga av' (strömmen)?", options: ["Betoningen ligger på verbet 'stänga'", "Betoningen ligger starkt på partikeln 'AV'", "Partikeln står alltid först", "Det saknar objekt"], correct: 1, exp: "Partikelverb bär huvudbetoningen på partikeln ('stänga AV')." },
+      { id: 15, cat: 'partikelverb', diff: 'Medel', q: "Vilken mening innehåller ett partikelverb i verkstadssammanhang?", options: ["Montören tittade på ritningen.", "Teknikern kopplade ur elskåpet före underhåll.", "Gjutaren stod vid ugnen.", "Svarvaren gick till lagret."], correct: 1, exp: "'koppla UR' är ett partikelverb där partikeln ändrar betydelsen till avaktivera." },
+      { id: 16, cat: 'partikelverb', diff: 'Svår', q: "Vad innebär partikelverbet 'ställa in' i meningen: 'Operatören ställer in fräsen'?", options: ["Förvara fräsen i ett skåp", "Kalibrera mått och parametrar på maskinen", "Ställa in ett möte", "Stänga av fräsen"], correct: 1, exp: "Industriellt betyder 'ställa IN' att ställa in exakta verktygsmått eller programvärden." },
+
+      // 6. Passiv s-form (Processbeskrivning)
+      { id: 17, cat: 'passiv_form', diff: 'Lätt', q: "Vilken mening är skriven i passiv form?", options: ["Operatören skär stålplåten.", "Stålplåten skärs med laser.", "Skär lasern stålplåten?", "Skärverktyget var vasst."], correct: 1, exp: "'Stålplåten skärs med laser' använder s-passiv för att framhäva objektet som bearbetas." },
+      { id: 18, cat: 'passiv_form', diff: 'Medel', q: "Omvandla den aktiva satsen 'Teknikern mäter toleransen' till passiv form:", options: ["Toleransen mäts av teknikern.", "Teknikern blev mätt tolerans.", "Toleransen mätte teknikern.", "Mäter toleransen teknikern."], correct: 0, exp: "Det direkta objektet ('toleransen') blir subjekt i den passiva satsen." },
+      { id: 19, cat: 'passiv_form', diff: 'Svår', q: "Varför används passiv form så ofta i industriella tillverkningsinstruktioner?", options: ["För att dölja vem som arbetar.", "För att sätta produkten och processen i centrum istället för personen.", "För att det är enklare engelska.", "För att undvika verb."], correct: 1, exp: "Passiv form skapar en objektiv och tydlig processbeskrivning." },
+
+      // 7. Substantiv & Form (Verktyg & Chuckar)
+      { id: 20, cat: 'substantiv', diff: 'Lätt', q: "Vad är rätt pluralform (flertal) av ett-ordet 'ett mått'?", options: ["måttar", "måtten", "mått", "mätter"], correct: 2, exp: "Ett-ord som slutar på konsonant ändras inte i obestämd plural: 'ett mått ➔ flera mått'." },
+      { id: 21, cat: 'substantiv', diff: 'Medel', q: "Välj rätt bestämd form i plural för en-ordet 'en chuck':", options: ["chuckar", "chuckarna", "chucker", "chucken"], correct: 1, exp: "En chuck ➔ flera chuckar ➔ de där chuckarna." },
+      { id: 22, cat: 'substantiv', diff: 'Svår', q: "Vad är obestämd form plural för facktermen 'ett vändskär'?", options: ["vändskärar", "vändskär", "vändskären", "vändskärare"], correct: 1, exp: "Ett vändskär ➔ flera vändskär." },
+
+      // 8. Adverbial (SRT-regeln)
+      { id: 23, cat: 'adverbial', diff: 'Lätt', q: "Vilken typ av adverbial är 'med skjutmått' i: 'Operatören mätte hålet med skjutmått'?", options: ["Tidsadverbial", "Rumsadverbial", "Sättsadverbial (Medel/Verktyg)", "Gradsadverbial"], correct: 2, exp: "'Med skjutmått' anger PÅ VILKET SÄTT / med vilket verktyg handlingen gjordes." },
+      { id: 24, cat: 'adverbial', diff: 'Medel', q: "Vilken ordning rekommenderar SRT-regeln för adverbial i slutet av en sats?", options: ["Tid - Rum - Sätt", "Sätt - Rum - Tid", "Rum - Tid - Sätt", "Sätt - Tid - Rum"], correct: 1, exp: "SRT-regeln: Sätt (Hur) ➔ Rum (Var) ➔ Tid (När)." },
+      { id: 25, cat: 'adverbial', diff: 'Svår', q: "Välj meningen som följer SRT-regeln korrekt i slutet av satsen:", options: ["Svarvaren arbeta noggrant i verkstaden igår.", "Svarvaren arbetade igår i verkstaden noggrant.", "Svarvaren arbetade i verkstaden noggrant igår.", "Svarvaren arbetade igår noggrant i verkstaden."], correct: 0, exp: "noggrant (Sätt) ➔ i verkstaden (Rum) ➔ igår (Tid)." },
+
+      // 9. Subjekt & Objekt i Verkstaden
+      { id: 26, cat: 'subjekt_objekt', diff: 'Lätt', q: "Identifiera SUBJEKTET i: 'Industriroboten plockar snabbt upp stålplåten.'", options: ["Industriroboten", "plockar", "snabbt", "stålplåten"], correct: 0, exp: "Subjektet utför handlingen: 'Industriroboten'." },
+      { id: 27, cat: 'subjekt_objekt', diff: 'Medel', q: "Identifiera det DIREKTA OBJEKTET i: 'Operatören slipade den vassa kanten.'", options: ["Operatören", "slipade", "den vassa kanten", "vassa"], correct: 2, exp: "Direkta objektet besvarar: Vad slipade operatören? -> 'den vassa kanten'." },
+      { id: 28, cat: 'subjekt_objekt', diff: 'Svår', q: "Identifiera det INDIREKTA OBJEKTET i: 'Leverantören skickade verkstaden nya borrstift.'", options: ["Leverantören", "skickade", "verkstaden", "nya borrstift"], correct: 2, exp: "Det indirekta objektet anger vem som mottar sändningen: 'verkstaden'." },
+
+      // 10. Satsverbial & Säkerhet
+      { id: 29, cat: 'satsverbial', diff: 'Lätt', q: "Vilket ord är ett satsverbial i: 'Använd alltid hörselskydd i hallen'?", options: ["Använd", "alltid", "hörselskydd", "hallen"], correct: 1, exp: "'Alltid' modifierar hela satsens sanningshalt." },
+      { id: 30, cat: 'satsverbial', diff: 'Medel', q: "Var placeras satsverbialet 'inte' i en RAK huvudsats med ett verb?", options: ["Före verbet", "Direkt efter verbet", "Alltid sist", "Alltid först"], correct: 1, exp: "I huvudsats står satsverbialet efter verbet ('Teknikern kom INTE idag')." },
+      { id: 31, cat: 'satsverbial', diff: 'Svår', q: "Identifiera satsverbialen i: 'Operatören glömde tyvärr aldrig skyddsglasögonen.'", options: ["tyvärr, aldrig", "glömde, skyddsglasögonen", "Operatören, glömde", "glömde, aldrig"], correct: 0, exp: "Både 'tyvärr' och 'aldrig' är satsverbial." },
+
+      // 11. Fundamentet i Order
+      { id: 32, cat: 'fundamentet', diff: 'Lätt', q: "Vad är fundamentet i: 'Före varje start måste nödstoppet kontrolleras'?", options: ["Före varje start", "måste", "nödstoppet", "kontrolleras"], correct: 0, exp: "Fundamentet är allt som står före det första verbet ('måste')." },
+      { id: 33, cat: 'fundamentet', diff: 'Medel', q: "Hur många enskilda fraser/satsled ryms normalt i fundamentet?", options: ["Endast ett satsled", "Två satsled", "Tre satsled", "Hur många som helst"], correct: 0, exp: "Fundamentsprincipen: Endast ett satsled placeras före verbet." },
+      { id: 34, cat: 'fundamentet', diff: 'Svår', q: "Identifiera fundamentet i: 'När ritningen har godkänts, påbörjas fräsningen.'", options: ["När ritningen", "När ritningen har godkänts", "påbörjas", "fräsningen"], correct: 1, exp: "Hela bisatsen 'När ritningen har godkänts' utgör ett sammansatt fundament." },
+
+      // 12. Masterclass GY25
+      { id: 35, cat: 'masterclass', diff: 'Expert', q: "Vilken mening är grammatiskt och terminologiskt helt korrekt?", options: ["Igår fasades alla kanter av på detaljen.", "Igår alla kanter fasades av på detaljen.", "Igår avfasades alla kanter av på detaljen av operatören igår.", "Igår fasades alla kanter av på detaljen igår."], correct: 0, exp: "V2-regeln följs, s-passiv bildas korrekt och inga dubblerade adverbial finns." },
+      { id: 36, cat: 'masterclass', diff: 'Expert', q: "Vilket grammatikfel finns i: 'Om ritningen stämmer inte, stoppas linjen'?", options: ["Satsverbialet 'inte' bryter mot BIFF-regeln i bisatsen.", "V2-regeln bryts i huvudsatsen.", "Subjektet saknas.", "Verbet 'stämmer' har fel form."], correct: 0, exp: "I bisats står Inte Före Första verbet. Det ska vara: 'Om ritningen INTE stämmer...'." }
+    ];
+
+    const BONUS_QUESTIONS_DATABASE = [
+      { id: 'B1', q: "Vilken är den korrekta passiva supinumformen av 'att svarva'?", options: ["svarvat", "svarvats", "svarvades", "svarvande"], correct: 1, exp: "Passiv supinum slutar på -ts ('Detaljen har svarvats')." },
+      { id: 'B2', q: "Vad kallas ordföljdsfelet när subjekt och verb av misstag byter plats i en bisats?", options: ["Felaktig Inversion", "Satsradning", "Satsfragment", "Snedställning"], correct: 0, exp: "Inversion hör hemma i huvudsatser, inte i bisatser." },
+      { id: 'B3', q: "Vilket genus har facktermen 'en chuck' respektive 'ett skär'?", options: ["Utrum (en) och Neutrum (ett)", "Båda är neutrum", "Båda är utrum", "Femininum och Maskulinum"], correct: 0, exp: "'En' ger utrum och 'ett' ger neutrum." }
+    ];
+
+    /* 5. GAME STATE */
+    let gameState = {
+      players: [],
+      currentPlayerIdx: 0,
+      round: 1,
+      selectedDifficulty: 'Alla',
+      timeLimitMinutes: 10,
+      timeRemainingSeconds: 600,
+      timerInterval: null,
+      usedQuestionIds: new Set(),
+      wheelSpinning: false,
+      currentWheelAngle: 0, // radians
+      targetQuestion: null,
+      isFiftyFiftyUsed: false,
+      currentOptions: []
+    };
+
+    /* 6. INITIALIZATION & SETUP LOGIC */
+    window.addEventListener('DOMContentLoaded', () => {
+      initSetupModalDefaults();
+      drawWheelCanvas();
+      renderCategoryCardsGrid();
+      renderBoardTrack();
+    });
+
+    function initSetupModalDefaults() {
+      renderPlayerInputs([
+        "Sven Svarvare",
+        "Gunnar Gjutare"
+      ]);
+      selectDifficulty('Alla');
+    }
+
+    function openSetupModal() {
+      document.getElementById('setupModal').classList.remove('hidden');
+    }
+
+    function closeSetupModal() {
+      document.getElementById('setupModal').classList.add('hidden');
+    }
+
+    function renderPlayerInputs(nameArray) {
+      const container = document.getElementById('playerInputsContainer');
+      container.innerHTML = '';
+
+      nameArray.forEach((nameVal, idx) => {
+        const colorObj = PLAYER_PALETTE[idx % PLAYER_PALETTE.length];
+        const emojiVal = INDUSTRIAL_EMOJIS[idx % INDUSTRIAL_EMOJIS.length];
+        const canDelete = nameArray.length > 1;
+
+        container.innerHTML += `
+          <div class="flex items-center gap-2 p-1.5 bg-slate-900/90 rounded-xl border border-slate-800" id="playerRow_${idx}">
+            <span class="w-8 h-8 rounded-lg ${colorObj.bg} text-slate-950 font-black flex items-center justify-center text-sm shadow-md">
+              ${emojiVal}
+            </span>
+            <input type="text" value="${nameVal}" id="pNameInp_${idx}" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-950 border border-slate-700 text-xs font-semibold text-slate-100 focus:outline-none focus:border-yellow-400" placeholder="Spelarnamn">
+            ${canDelete ? `
+              <button type="button" onclick="removeSinglePlayerInput(${idx})" class="p-1 text-rose-400 hover:text-rose-200 font-bold text-xs" title="Ta bort spelare">❌</button>
+            ` : '<span class="w-5"></span>'}
+          </div>
+        `;
+      });
+
+      document.getElementById('playerCountBadge').innerText = `${nameArray.length} / 20 Spelare`;
+    }
+
+    function getCurrentInputNames() {
+      const inputs = document.querySelectorAll('[id^="pNameInp_"]');
+      const names = [];
+      inputs.forEach((inp, idx) => {
+        names.push(inp.value.trim() || `Spelare ${idx + 1}`);
+      });
+      return names;
+    }
+
+    function presetPlayers(count) {
+      const names = [];
+      const presets = ["Sven Svarvare", "Gunnar Gjutare", "Maria Miljö", "Kurt Kugg", "Anna Automation", "Bengt Beredare", "Lasse Laser", "Frida Fräs"];
+      for (let i = 0; i < count; i++) {
+        names.push(presets[i] || `Spelare ${i + 1}`);
+      }
+      renderPlayerInputs(names);
+    }
+
+    function addSinglePlayerInput() {
+      const names = getCurrentInputNames();
+      if (names.length >= 20) return;
+      names.push(`Spelare ${names.length + 1}`);
+      renderPlayerInputs(names);
+    }
+
+    function removeSinglePlayerInput(idxToRemove) {
+      const names = getCurrentInputNames();
+      if (names.length <= 1) return;
+      names.splice(idxToRemove, 1);
+      renderPlayerInputs(names);
+    }
+
+    function selectDifficulty(diff) {
+      gameState.selectedDifficulty = diff;
+      document.querySelectorAll('.diff-btn').forEach(btn => {
+        if (btn.dataset.diff === diff) {
+          btn.classList.add('ring-2', 'ring-yellow-400', 'bg-slate-700');
+        } else {
+          btn.classList.remove('ring-2', 'ring-yellow-400', 'bg-slate-700');
+        }
+      });
+      document.getElementById('diffBadge').innerText = `Nivå: ${diff}`;
+    }
+
+    function startGameFromSetup() {
+      const names = getCurrentInputNames();
+      if (names.length === 0) return;
+
+      gameState.players = names.map((n, idx) => {
+        const paletteObj = PLAYER_PALETTE[idx % PLAYER_PALETTE.length];
+        const emojiObj = INDUSTRIAL_EMOJIS[idx % INDUSTRIAL_EMOJIS.length];
+        return {
+          id: idx + 1,
+          name: n,
+          score: 0,
+          position: 0,
+          emoji: emojiObj,
+          color: paletteObj,
+          bonusLeft: 1
+        };
+      });
+
+      gameState.currentPlayerIdx = 0;
+      gameState.round = 1;
+      gameState.usedQuestionIds.clear();
+
+      // Timer Setup
+      gameState.timeLimitMinutes = parseInt(document.getElementById('selectTimeLimit').value, 10);
+      if (gameState.timeLimitMinutes > 0) {
+        gameState.timeRemainingSeconds = gameState.timeLimitMinutes * 60;
+        document.getElementById('headerTimerBadge').classList.remove('hidden');
+        updateTimerDisplay();
+        if (gameState.timerInterval) clearInterval(gameState.timerInterval);
+        gameState.timerInterval = setInterval(tickTimer, 1000);
+      } else {
+        document.getElementById('headerTimerBadge').classList.add('hidden');
+        if (gameState.timerInterval) clearInterval(gameState.timerInterval);
+      }
+
+      closeSetupModal();
+      renderLeaderboard();
+      renderBoardTrack();
+      drawWheelCanvas();
+      updateTurnUI();
+    }
+
+    function tickTimer() {
+      gameState.timeRemainingSeconds--;
+      updateTimerDisplay();
+      if (gameState.timeRemainingSeconds <= 0) {
+        clearInterval(gameState.timerInterval);
+        endGame();
+      }
+    }
+
+    function updateTimerDisplay() {
+      const mins = Math.floor(gameState.timeRemainingSeconds / 60);
+      const secs = gameState.timeRemainingSeconds % 60;
+      document.getElementById('headerTimerText').innerText = `${mins}:${secs < 10 ? '0' : ''}${secs}`;
+    }
+
+    /* 7. LEADERBOARD & UI UPDATES */
+    function renderLeaderboard() {
+      const container = document.getElementById('playerBar');
+      container.innerHTML = '';
+
+      gameState.players.forEach((p, idx) => {
+        const isCurrent = (idx === gameState.currentPlayerIdx);
+        container.innerHTML += `
+          <div class="glass-card p-2.5 rounded-2xl flex items-center justify-between border ${isCurrent ? 'border-yellow-400 ring-2 ring-yellow-400/50 glow-yellow bg-slate-800/90 active-turn-pulse' : 'border-slate-800'} transition duration-200">
+            <div class="flex items-center gap-2 overflow-hidden">
+              <div class="w-8 h-8 rounded-lg ${p.color.bg} text-slate-950 font-black flex items-center justify-center text-sm shadow-md flex-shrink-0">
+                ${p.emoji}
+              </div>
+              <div class="truncate">
+                <h4 class="text-xs font-extrabold text-slate-100 truncate flex items-center gap-1">
+                  ${p.name}
+                </h4>
+                <span class="text-[9px] ${isCurrent ? 'text-yellow-300 font-black' : 'text-slate-400'} block">
+                  ${isCurrent ? '👉 DIN TUR' : `Ruta ${p.position + 1}`}
+                </span>
+              </div>
+            </div>
+            <div class="text-right flex-shrink-0 ml-1">
+              <span class="text-sm font-black ${p.color.text}">${p.score}</span>
+              <span class="text-[9px] text-slate-400 block font-semibold">Coins 🪙</span>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function updateTurnUI() {
+      const curP = gameState.players[gameState.currentPlayerIdx];
+
+      // Update Top Banner
+      const bannerText = document.getElementById('turnBannerText');
+      const bannerIcon = document.getElementById('turnBadgeIcon');
+      bannerText.innerText = `DET ÄR ${curP.name.toUpperCase()}S TUR!`;
+      bannerIcon.innerText = curP.emoji;
+      bannerIcon.className = `w-11 h-11 rounded-xl ${curP.color.bg} text-slate-950 font-black flex items-center justify-center text-xl shadow-md`;
+
+      document.getElementById('turnRoundLabel').innerText = `Runda ${gameState.round}`;
+      document.getElementById('spinNotice').innerText = `Det är ${curP.name}s tur! Snurra hjulet eller klicka på ett ämne.`;
+
+      // Bonus Button Visibility
+      const btnBonus = document.getElementById('btnTriggerBonus');
+      if (curP.bonusLeft > 0) {
+        btnBonus.classList.remove('hidden');
+      } else {
+        btnBonus.classList.add('hidden');
+      }
+
+      renderLeaderboard();
+      renderBoardTrack();
+    }
+
+    /* 8. REALISTIC LOTTERY WHEEL CANVAS & PHYSICS ENGINE */
+    function drawWheelCanvas() {
+      const canvas = document.getElementById('wheelCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+
+      const cx = canvas.width / 2;
+      const cy = canvas.height / 2;
+      const radius = cx - 10;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const numSlices = CATEGORIES.length;
+      const sliceAngle = (Math.PI * 2) / numSlices;
+
+      // Draw sectors
+      CATEGORIES.forEach((cat, idx) => {
+        const startA = gameState.currentWheelAngle + idx * sliceAngle;
+        const endA = startA + sliceAngle;
+
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.arc(cx, cy, radius, startA, endA);
+        ctx.closePath();
+        ctx.fillStyle = cat.color;
+        ctx.fill();
+        ctx.lineWidth = 2.5;
+        ctx.strokeStyle = '#070b14';
+        ctx.stroke();
+
+        // Slice dividing pins
+        const pinAngle = startA;
+        const px = cx + (radius - 4) * Math.cos(pinAngle);
+        const py = cy + (radius - 4) * Math.sin(pinAngle);
+        ctx.beginPath();
+        ctx.arc(px, py, 3.5, 0, Math.PI * 2);
+        ctx.fillStyle = '#fecc00';
+        ctx.fill();
+        ctx.strokeStyle = '#000000';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        // Text rendering
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.rotate(startA + sliceAngle / 2);
+        ctx.textAlign = "right";
+        ctx.fillStyle = "#ffffff";
+        ctx.font = "bold 10px Inter, sans-serif";
+        ctx.shadowColor = "rgba(0,0,0,0.85)";
+        ctx.shadowBlur = 5;
+        let text = `${cat.icon} ${cat.name}`;
+        if (text.length > 20) text = text.substring(0, 18) + '..';
+        ctx.fillText(text, radius - 20, 4);
+        ctx.restore();
+      });
+
+      // Metallic Outer Rim
+      ctx.beginPath();
+      ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+      ctx.lineWidth = 8;
+      ctx.strokeStyle = '#fecc00';
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.arc(cx, cy, radius - 4, 0, Math.PI * 2);
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = 'rgba(0,0,0,0.5)';
+      ctx.stroke();
+    }
+
+    /* SMOOTH LOTTERY WHEEL SPIN WITH INERTIA & TICK SOUND/WIGGLE */
+    function spinWheel() {
+      if (gameState.wheelSpinning) return;
+
+      gameState.wheelSpinning = true;
+      document.getElementById('btnSpin').disabled = true;
+
+      const numSlices = CATEGORIES.length;
+      const sliceAngle = (Math.PI * 2) / numSlices;
+
+      // Random target slice selection
+      const targetSliceIdx = Math.floor(Math.random() * numSlices);
+
+      // Calculate target angle so pointer at TOP (270 degrees / -PI/2) hits the exact slice center
+      const pointerAngle = -Math.PI / 2;
+
+      // Target slice center offset relative to start of slice
+      const sliceOffset = (0.2 + Math.random() * 0.6) * sliceAngle; // stop inside slice nicely
+
+      // We want: (gameState.currentWheelAngle + targetSliceIdx * sliceAngle + sliceOffset) % 2PI = pointerAngle % 2PI
+      const desiredFinalAngleBase = pointerAngle - (targetSliceIdx * sliceAngle + sliceOffset);
+
+      // Add multiple full revolutions (5 to 8 turns)
+      const extraTurns = (5 + Math.floor(Math.random() * 4)) * Math.PI * 2;
+
+      // Ensure positive rotation forward
+      let currentMod = gameState.currentWheelAngle % (Math.PI * 2);
+      let diff = (desiredFinalAngleBase - currentMod) % (Math.PI * 2);
+      if (diff <= 0) diff += Math.PI * 2;
+
+      const startAngle = gameState.currentWheelAngle;
+      const totalRotation = extraTurns + diff;
+      const finalAngle = startAngle + totalRotation;
+
+      const duration = 4800; // ms cubic ease-out
+      const startTime = performance.now();
+      let lastSectorIdx = -1;
+
+      const pointerEl = document.getElementById('wheelPointer');
+
+      function triggerTickerAnimation() {
+        if (!pointerEl) return;
+        pointerEl.classList.add('tick-flex');
+        setTimeout(() => pointerEl.classList.remove('tick-flex'), 60);
+      }
+
+      function animatePhysics(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+
+        // Easing formula: Ease-Out Cubic for natural decelerating lottery wheel
+        const easeOutCubic = 1 - Math.pow(1 - progress, 3);
+
+        gameState.currentWheelAngle = startAngle + totalRotation * easeOutCubic;
+        drawWheelCanvas();
+
+        // Calculate current sector under top pointer to trigger sound and ticker wiggle
+        const currentPointerPos = (pointerAngle - gameState.currentWheelAngle) % (Math.PI * 2);
+        const positivePos = (currentPointerPos + Math.PI * 2) % (Math.PI * 2);
+        const activeSectorIdx = Math.floor(positivePos / sliceAngle) % numSlices;
+
+        if (activeSectorIdx !== lastSectorIdx) {
+          playSound('tick');
+          triggerTickerAnimation();
+          lastSectorIdx = activeSectorIdx;
+        }
+
+        if (progress < 1) {
+          requestAnimationFrame(animatePhysics);
+        } else {
+          gameState.wheelSpinning = false;
+          document.getElementById('btnSpin').disabled = false;
+
+          // Verify final category accurately
+          const winningCat = CATEGORIES[targetSliceIdx];
+          playSound('tick');
+          triggerQuestionForCategory(winningCat.id);
+        }
+      }
+
+      requestAnimationFrame(animatePhysics);
+    }
+
+    /* 9. BOARD TRACK & CATEGORIES GRID */
+    function renderBoardTrack() {
+      const track = document.getElementById('boardTrack');
+      track.innerHTML = '';
+
+      const totalTiles = 20;
+      for (let i = 0; i < totalTiles; i++) {
+        const catObj = CATEGORIES[i % CATEGORIES.length];
+        const playersOnTile = gameState.players.filter(p => (p.position % totalTiles) === i);
+
+        track.innerHTML += `
+          <div class="relative h-14 sm:h-16 rounded-xl p-1 flex flex-col justify-between border border-slate-800 bg-slate-900/90 hover:border-slate-700 transition">
+            <div class="flex items-center justify-between text-[9px] font-bold text-slate-400">
+              <span>#${i + 1}</span>
+              <span>${catObj.icon}</span>
+            </div>
+            <div class="text-[8px] font-extrabold truncate" style="color: ${catObj.color}">
+              ${catObj.name}
+            </div>
+
+            <!-- Player Pawns -->
+            <div class="flex items-center gap-0.5 justify-center flex-wrap min-h-[14px]">
+              ${playersOnTile.map(p => `
+                <span class="w-4 h-4 rounded-full ${p.color.bg} border border-slate-950 text-slate-950 font-black text-[9px] flex items-center justify-center shadow-md animate-bounce" title="${p.name}">
+                  ${p.emoji}
+                </span>
+              `).join('')}
+            </div>
+          </div>
+        `;
+      }
+    }
+
+    function renderCategoryCardsGrid() {
+      const grid = document.getElementById('categoryCardsGrid');
+      grid.innerHTML = '';
+      CATEGORIES.forEach(cat => {
+        grid.innerHTML += `
+          <button onclick="triggerQuestionForCategory('${cat.id}')" class="p-2 rounded-xl glass-card hover:bg-slate-800 border border-slate-800 hover:border-yellow-500/50 text-left transition flex items-center gap-2 group">
+            <span class="text-base group-hover:scale-110 transition duration-200">${cat.icon}</span>
+            <div class="overflow-hidden">
+              <h5 class="text-xs font-bold truncate" style="color:${cat.color}">${cat.name}</h5>
+              <span class="text-[8px] text-slate-400 font-medium">GY25 Svenska</span>
+            </div>
+          </button>
+        `;
+      });
+    }
+
+    /* 10. QUESTION HANDLING & MODAL */
+    function triggerQuestionForCategory(catId) {
+      let available = QUESTION_DATABASE.filter(q => {
+        const matchCat = q.cat === catId;
+        const matchDiff = (gameState.selectedDifficulty === 'Alla') || (q.diff === gameState.selectedDifficulty);
+        return matchCat && matchDiff && !gameState.usedQuestionIds.has(q.id);
+      });
+
+      if (available.length === 0) {
+        available = QUESTION_DATABASE.filter(q => q.cat === catId && !gameState.usedQuestionIds.has(q.id));
+      }
+      if (available.length === 0) {
+        available = QUESTION_DATABASE.filter(q => q.cat === catId);
+      }
+
+      if (available.length === 0) return;
+
+      const q = available[Math.floor(Math.random() * available.length)];
+      gameState.usedQuestionIds.add(q.id);
+      gameState.targetQuestion = q;
+      gameState.isFiftyFiftyUsed = false;
+
+      presentQuestionModal(q);
+    }
+
+    function presentQuestionModal(q) {
+      const catObj = CATEGORIES.find(c => c.id === q.cat);
+      const curP = gameState.players[gameState.currentPlayerIdx];
+
+      // Update modal category badge
+      const catBadge = document.getElementById('qCategoryBadge');
+      catBadge.innerText = `${catObj.icon} ${catObj.name}`;
+      catBadge.style.backgroundColor = `${catObj.color}25`;
+      catBadge.style.color = catObj.color;
+      catBadge.style.borderColor = `${catObj.color}60`;
+
+      document.getElementById('qDiffBadge').innerText = `Nivå: ${q.diff}`;
+
+      let pts = 100;
+      if (q.diff === 'Medel') pts = 150;
+      if (q.diff === 'Svår') pts = 200;
+      if (q.diff === 'Expert') pts = 300;
+      document.getElementById('qPointsBadge').innerText = `+${pts} Coins 🪙`;
+
+      // Update player turn banner in modal
+      document.getElementById('qTurnPlayerName').innerText = `SVARAS JUST NU AV: ${curP.name.toUpperCase()}`;
+      document.getElementById('qTurnScoreText').innerText = `${curP.score} Coins 🪙`;
+      const qTurnPawn = document.getElementById('qTurnPawn');
+      qTurnPawn.innerText = curP.emoji;
+      qTurnPawn.className = `w-6 h-6 rounded-md ${curP.color.bg} text-slate-950 font-black flex items-center justify-center text-xs`;
+
+      document.getElementById('qText').innerText = q.q;
+      document.getElementById('explanationBanner').classList.add('hidden');
+      document.getElementById('btnNextQuestion').classList.add('hidden');
+
+      // Reset 50/50 Lifeline Button
+      const btnFifty = document.getElementById('btnFiftyFifty');
+      btnFifty.disabled = false;
+      btnFifty.classList.remove('opacity-40', 'cursor-not-allowed');
+      btnFifty.innerHTML = '<span>✨ 50/50 Hjälp</span>';
+
+      // Options Setup
+      gameState.currentOptions = q.options.map((optText, idx) => ({
+        text: optText,
+        isCorrect: (idx === q.correct),
+        originalIndex: idx
+      }));
+
+      renderOptionsButtons();
+      document.getElementById('questionModal').classList.remove('hidden');
+    }
+
+    function renderOptionsButtons() {
+      const container = document.getElementById('qOptionsContainer');
+      container.innerHTML = '';
+
+      gameState.currentOptions.forEach((opt, idx) => {
+        const letter = ['A', 'B', 'C', 'D'][idx];
+        container.innerHTML += `
+          <button onclick="handleOptionClick(${opt.originalIndex})" id="optBtn_${opt.originalIndex}" class="option-btn w-full p-3 rounded-2xl bg-slate-900 border border-slate-800 hover:border-yellow-400/60 hover:bg-slate-800/80 text-left transition flex items-center gap-3 text-xs sm:text-sm text-slate-100 font-medium group">
+            <span class="w-7 h-7 rounded-lg bg-slate-800 group-hover:bg-yellow-500/20 text-yellow-300 border border-slate-700 flex items-center justify-center font-bold text-xs flex-shrink-0">
+              ${letter}
+            </span>
+            <span class="flex-1 leading-snug">${opt.text}</span>
+          </button>
+        `;
+      });
+    }
+
+    /* 50/50 LIFELINE FUNCTION */
+    function useFiftyFifty() {
+      if (gameState.isFiftyFiftyUsed) return;
+      gameState.isFiftyFiftyUsed = true;
+
+      const btnFifty = document.getElementById('btnFiftyFifty');
+      btnFifty.disabled = true;
+      btnFifty.classList.add('opacity-40', 'cursor-not-allowed');
+      btnFifty.innerHTML = '<span>✨ 50/50 Använd</span>';
+
+      document.getElementById('qPointsBadge').innerText = '+50 Coins (Halv Vinst) 🪙';
+
+      const q = gameState.targetQuestion;
+      const incorrectIndices = [];
+      q.options.forEach((_, idx) => {
+        if (idx !== q.correct) incorrectIndices.push(idx);
+      });
+
+      // Hide 2 wrong options randomly
+      incorrectIndices.sort(() => Math.random() - 0.5);
+      const toHide = incorrectIndices.slice(0, 2);
+
+      toHide.forEach(idx => {
+        const btn = document.getElementById(`optBtn_${idx}`);
+        if (btn) {
+          btn.style.visibility = 'hidden';
+          btn.disabled = true;
+        }
+      });
+
+      playSound('tick');
+    }
+
+    function handleOptionClick(selectedIdx) {
+      const q = gameState.targetQuestion;
+      const isCorrect = (selectedIdx === q.correct);
+
+      // Disable 50/50 Button
+      const btnFifty = document.getElementById('btnFiftyFifty');
+      btnFifty.disabled = true;
+
+      const buttons = document.querySelectorAll('.option-btn');
+      buttons.forEach((btn) => {
+        btn.disabled = true;
+      });
+
+      const clickedBtn = document.getElementById(`optBtn_${selectedIdx}`);
+      const correctBtn = document.getElementById(`optBtn_${q.correct}`);
+
+      if (isCorrect) {
+        if (clickedBtn) clickedBtn.className = "w-full p-3 rounded-2xl bg-emerald-950/90 border-2 border-emerald-400 text-left flex items-center gap-3 text-xs sm:text-sm text-emerald-200 font-bold shadow-lg";
+      } else {
+        if (clickedBtn) clickedBtn.className = "w-full p-3 rounded-2xl bg-rose-950/90 border-2 border-rose-400 text-left flex items-center gap-3 text-xs sm:text-sm text-rose-200 font-medium opacity-80";
+        if (correctBtn) {
+          correctBtn.style.visibility = 'visible';
+          correctBtn.className = "w-full p-3 rounded-2xl bg-emerald-950/90 border-2 border-emerald-400 text-left flex items-center gap-3 text-xs sm:text-sm text-emerald-200 font-bold ring-2 ring-emerald-400";
+        }
+      }
+
+      const curPlayer = gameState.players[gameState.currentPlayerIdx];
+
+      if (isCorrect) {
+        playSound('correct');
+        let pts = gameState.isFiftyFiftyUsed ? 50 : 100;
+        if (!gameState.isFiftyFiftyUsed) {
+          if (q.diff === 'Medel') pts = 150;
+          if (q.diff === 'Svår') pts = 200;
+          if (q.diff === 'Expert') pts = 300;
+        }
+
+        curPlayer.score += pts;
+        curPlayer.position += (q.diff === 'Svår' || q.diff === 'Expert') ? 2 : 1;
+      } else {
+        playSound('wrong');
+        curPlayer.score -= 50;
+      }
+
+      document.getElementById('explanationText').innerText = q.exp;
+      document.getElementById('explanationBanner').classList.remove('hidden');
+      document.getElementById('btnNextQuestion').classList.remove('hidden');
+
+      renderLeaderboard();
+      renderBoardTrack();
+    }
+
+    function closeQuestionModal() {
+      document.getElementById('questionModal').classList.add('hidden');
+
+      // Advance turn
+      gameState.currentPlayerIdx = (gameState.currentPlayerIdx + 1) % gameState.players.length;
+
+      if (gameState.currentPlayerIdx === 0) {
+        gameState.round++;
+      }
+
+      const winner = gameState.players.find(p => p.score >= 1200);
+      if (gameState.round > 12 || winner) {
+        endGame();
+      } else {
+        updateTurnUI();
+      }
+    }
+
+    /* 11. EXPERT BONUS MODAL */
+    function openBonusQuestionModal() {
+      const curP = gameState.players[gameState.currentPlayerIdx];
+      if (!curP || curP.bonusLeft <= 0) return;
+
+      const bonusQ = BONUS_QUESTIONS_DATABASE[Math.floor(Math.random() * BONUS_QUESTIONS_DATABASE.length)];
+
+      document.getElementById('bonusPlayerText').innerText = `Bonusfråga för ${curP.name}`;
+      document.getElementById('bonusQuestionText').innerText = bonusQ.q;
+      document.getElementById('bonusFeedbackBanner').classList.add('hidden');
+      document.getElementById('btnNextBonus').classList.add('hidden');
+
+      const container = document.getElementById('bonusOptionsContainer');
+      container.innerHTML = '';
+
+      bonusQ.options.forEach((optText, idx) => {
+        const isCorrect = (idx === bonusQ.correct);
+        container.innerHTML += `
+          <button onclick="handleBonusAnswer(${isCorrect})" class="bonus-opt-btn w-full p-3 bg-amber-950/60 hover:bg-amber-900/80 border border-amber-500/50 text-left rounded-xl text-xs text-amber-200 transition font-medium">
+            ${optText}
+          </button>
+        `;
+      });
+
+      document.getElementById('bonusQuestionModal').classList.remove('hidden');
+    }
+
+    function handleBonusAnswer(isCorrect) {
+      const curP = gameState.players[gameState.currentPlayerIdx];
+      curP.bonusLeft--;
+
+      const btns = document.querySelectorAll('.bonus-opt-btn');
+      btns.forEach(b => b.disabled = true);
+
+      const banner = document.getElementById('bonusFeedbackBanner');
+      banner.classList.remove('hidden');
+
+      if (isCorrect) {
+        curP.score += 1000;
+        banner.className = "p-3 rounded-xl font-bold text-xs text-center bg-emerald-950 border border-emerald-500 text-emerald-300";
+        banner.innerText = "⭐ UTOMORDENTLIGT! RÄTT BONUS (+1000 COINS 🪙)";
+        playSound('correct');
+      } else {
+        banner.className = "p-3 rounded-xl font-bold text-xs text-center bg-rose-950 border border-rose-500 text-rose-300";
+        banner.innerText = "FEL SVAR! (0 Coins)";
+        playSound('wrong');
+      }
+
+      document.getElementById('btnNextBonus').classList.remove('hidden');
+      renderLeaderboard();
+      updateTurnUI();
+    }
+
+    function closeBonusModal() {
+      document.getElementById('bonusQuestionModal').classList.add('hidden');
+    }
+
+    /* 12. MANUAL SCORE MODAL */
+    function openManualScoreModal() {
+      const select = document.getElementById('selectScorePlayer');
+      select.innerHTML = '';
+      gameState.players.forEach((p, idx) => {
+        const opt = document.createElement('option');
+        opt.value = idx;
+        opt.innerText = `${p.name} (${p.score} Coins)`;
+        select.appendChild(opt);
+      });
+      if (gameState.players.length > 0) document.getElementById('inputCustomScore').value = gameState.players[0].score;
+      select.onchange = () => {
+        document.getElementById('inputCustomScore').value = gameState.players[select.value].score;
+      };
+      document.getElementById('manualScoreModal').classList.remove('hidden');
+    }
+
+    function closeManualScoreModal() {
+      document.getElementById('manualScoreModal').classList.add('hidden');
+    }
+
+    function saveManualScore() {
+      const select = document.getElementById('selectScorePlayer');
+      const pIdx = select.value;
+      const newScore = parseInt(document.getElementById('inputCustomScore').value, 10);
+      if (!isNaN(newScore) && gameState.players[pIdx]) {
+        gameState.players[pIdx].score = newScore;
+        renderLeaderboard();
+        updateTurnUI();
+      }
+      closeManualScoreModal();
+    }
+
+    /* 13. VICTORY & CONFETTI */
+    function endGame() {
+      if (gameState.timerInterval) clearInterval(gameState.timerInterval);
+      playSound('victory');
+      launchConfetti();
+
+      const sorted = [...gameState.players].sort((a, b) => b.score - a.score);
+      const winner = sorted[0];
+
+      document.getElementById('victoryTitle').innerText = `👑 ${winner.name} Vinner!`;
+      document.getElementById('victorySubtitle').innerText = `Med fantastiska ${winner.score} Coins i Industrins Svenska!`;
+
+      const podium = document.getElementById('podiumContainer');
+      podium.innerHTML = '';
+
+      sorted.forEach((p, idx) => {
+        const medal = ['🥇 1:a Plats', '🥈 2:a Plats', '🥉 3:e Plats'][idx] || `🏅 ${idx + 1}:a Plats`;
+        podium.innerHTML += `
+          <div class="glass-card p-3 rounded-2xl border border-slate-700 flex flex-col items-center gap-1.5">
+            <span class="text-xs font-black text-yellow-400">${medal}</span>
+            <div class="flex items-center gap-1.5">
+              <span class="text-base">${p.emoji}</span>
+              <h4 class="text-sm font-extrabold text-slate-100">${p.name}</h4>
+            </div>
+            <span class="text-lg font-black ${p.color.text}">${p.score} Coins 🪙</span>
+          </div>
+        `;
+      });
+
+      document.getElementById('victoryModal').classList.remove('hidden');
+    }
+
+    function launchConfetti() {
+      const canvas = document.getElementById('confettiCanvas');
+      if (!canvas) return;
+      canvas.classList.remove('hidden');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const particles = [];
+      const colors = ['#fecc00', '#005293', '#06b6d4', '#a855f7', '#10b981', '#ffffff'];
+
+      for (let i = 0; i < 120; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height - canvas.height,
+          vx: (Math.random() - 0.5) * 4,
+          vy: Math.random() * 4 + 2,
+          size: Math.random() * 8 + 4,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          rotation: Math.random() * Math.PI * 2,
+          vRot: (Math.random() - 0.5) * 0.1
+        });
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let active = false;
+        particles.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.rotation += p.vRot;
+          if (p.y < canvas.height) active = true;
+
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rotation);
+          ctx.fillStyle = p.color;
+          ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+          ctx.restore();
+        });
+
+        if (active && !document.getElementById('victoryModal').classList.contains('hidden')) {
+          requestAnimationFrame(animate);
+        } else {
+          canvas.classList.add('hidden');
+        }
+      }
+      requestAnimationFrame(animate);
+    }
+
+    function openRulesModal() {
+      document.getElementById('rulesModal').classList.remove('hidden');
+    }
+
+    function closeRulesModal() {
+      document.getElementById('rulesModal').classList.add('hidden');
+    }
+  </script>
+</body>
+</html>

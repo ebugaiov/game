@@ -1,0 +1,74 @@
+[
+  {
+    "seedKey": "bonus-1",
+    "difficulty": "expert",
+    "prompt": "Vilken är den korrekta passiva supinumformen av 'att svarva'?",
+    "explanation": "Passiv supinum slutar på -ts ('Detaljen har svarvats').",
+    "options": [
+      {
+        "text": "svarvat",
+        "isCorrect": false
+      },
+      {
+        "text": "svarvats",
+        "isCorrect": true
+      },
+      {
+        "text": "svarvades",
+        "isCorrect": false
+      },
+      {
+        "text": "svarvande",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "seedKey": "bonus-2",
+    "difficulty": "expert",
+    "prompt": "Vad kallas ordföljdsfelet när subjekt och verb av misstag byter plats i en bisats?",
+    "explanation": "Inversion hör hemma i huvudsatser, inte i bisatser.",
+    "options": [
+      {
+        "text": "Felaktig Inversion",
+        "isCorrect": true
+      },
+      {
+        "text": "Satsradning",
+        "isCorrect": false
+      },
+      {
+        "text": "Satsfragment",
+        "isCorrect": false
+      },
+      {
+        "text": "Snedställning",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "seedKey": "bonus-3",
+    "difficulty": "expert",
+    "prompt": "Vilket genus har facktermen 'en chuck' respektive 'ett skär'?",
+    "explanation": "'En' ger utrum och 'ett' ger neutrum.",
+    "options": [
+      {
+        "text": "Utrum (en) och Neutrum (ett)",
+        "isCorrect": true
+      },
+      {
+        "text": "Båda är neutrum",
+        "isCorrect": false
+      },
+      {
+        "text": "Båda är utrum",
+        "isCorrect": false
+      },
+      {
+        "text": "Femininum och Maskulinum",
+        "isCorrect": false
+      }
+    ]
+  }
+]

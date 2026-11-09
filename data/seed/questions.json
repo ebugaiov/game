@@ -1,0 +1,902 @@
+[
+  {
+    "seedKey": "q-001",
+    "categoryId": "huvudsats",
+    "difficulty": "easy",
+    "prompt": "Vilken mening följer V2-regeln när fundamentet är tidsadverbialet 'Igår'?",
+    "explanation": "V2-regeln kräver att verbet ('ställde') alltid hamnar på 2:a platsen i en huvudsats.",
+    "options": [
+      {
+        "text": "Igår operatören ställde in CNC-svarven.",
+        "isCorrect": false
+      },
+      {
+        "text": "Igår ställde operatören in CNC-svarven.",
+        "isCorrect": true
+      },
+      {
+        "text": "Igår ställde in operatören CNC-svarven.",
+        "isCorrect": false
+      },
+      {
+        "text": "Operatören igår ställde in CNC-svarven.",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "seedKey": "q-002",
+    "categoryId": "huvudsats",
+    "difficulty": "medium",
+    "prompt": "Komplettera meningen: 'Efter skiftet [...] svetsteknikern alla verktyg.'",
+    "explanation": "När 'Efter skiftet' inleder meningen måste det finita verbet ('rengör') komma direkt på andra plats.",
+    "options": [
+      {
+        "text": "rengör",
+        "isCorrect": true
+      },
+      {
+        "text": "han rengör",
+        "isCorrect": false
+      },
+      {
+        "text": "rengjorde han",
+        "isCorrect": false
+      },
+      {
+        "text": "rengöra",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "seedKey": "q-003",
+    "categoryId": "huvudsats",
+    "difficulty": "hard",
+    "prompt": "Identifiera meningen som BRYTER mot V2-regeln i verkstadssammanhang:",
+    "explanation": "'I mätlaboratoriet kontrollanten mätte...' bryter mot V2. Verbet ('mätte') måste hamna på andra plats.",
+    "options": [
+      {
+        "text": "På fredagar underhålls alla fräsmaskiner.",
+        "isCorrect": false
+      },
+      {
+        "text": "I mätlaboratoriet kontrollanten mätte hålets diameter.",
+        "isCorrect": true
+      },
+      {
+        "text": "Plötsligt stoppades löpande bandet av nödstoppet.",
+        "isCorrect": false
+      },
+      {
+        "text": "Nu monterar robotarmen den sista komponenten.",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "seedKey": "q-004",
+    "categoryId": "huvudsats",
+    "difficulty": "expert",
+    "prompt": "Vad kallas grammatiska omvandlingen när verbet hamnar före subjektet i: 'Igår startade operatören ugnen'?",
+    "explanation": "Inversion uppstår när fundamentet inte är subjektet, vilket flyttar verbet före subjektet.",
+    "options": [
+      {
+        "text": "Rak ordföljd",
+        "isCorrect": false
+      },
+      {
+        "text": "Inversion (Omvänd ordföljd)",
+        "isCorrect": true
+      },
+      {
+        "text": "Bisatsordföljd",
+        "isCorrect": false
+      },
+      {
+        "text": "Passivering",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "seedKey": "q-005",
+    "categoryId": "bisats",
+    "difficulty": "easy",
+    "prompt": "Var placeras satsverbialet 'inte' i bisatsen: '...eftersom operatören [...] glasögonen.'?",
+    "explanation": "BIFF-regeln: I Bisats står Inte Före Första verbet ('...eftersom operatören inte hittade...').",
+    "options": [
+      {
+        "text": "hittade inte",
+        "isCorrect": false
+      },
+      {
+        "text": "inte hittade",
+        "isCorrect": true
+      },
+      {
+        "text": "hittade aldrig inte",
+        "isCorrect": false
+      },
+      {
+        "text": "inte hade hittat inte",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "seedKey": "q-006",
+    "categoryId": "bisats",
+    "difficulty": "medium",
+    "prompt": "Vilken bisats innehåller korrekt ordföljd enligt BIFF-regeln?",
+    "explanation": "Satsverbialet 'inte' placeras direkt före det finita hjälperbet 'kan'.",
+    "options": [
+      {
+        "text": "...när roboten kan inte lyfta plåten.",
+        "isCorrect": false
+      },
+      {
+        "text": "...när roboten inte kan lyfta plåten.",
+        "isCorrect": true
+      },
+      {
+        "text": "...när inte roboten kan lyfta plåten.",
+        "isCorrect": false
+      },
+      {
+        "text": "...när kan inte roboten lyfta plåten.",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "seedKey": "q-007",
+    "categoryId": "bisats",
+    "difficulty": "hard",
+    "prompt": "Vilket ord är en subjunktion (bisatsinledare) i: 'Produktionen stoppades eftersom slangen läckte'?",
+    "explanation": "'Eftersom' inleder bisatsen 'eftersom slangen läckte'.",
+    "options": [
+      {
+        "text": "Produktionen",
+        "isCorrect": false
+      },
+      {
+        "text": "stoppades",
+        "isCorrect": false
+      },
+      {
+        "text": "eftersom",
+        "isCorrect": true
+      },
+      {
+        "text": "läckte",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "seedKey": "q-008",
+    "categoryId": "verb1_2",
+    "difficulty": "easy",
+    "prompt": "I vilken form står Verb 2 ('kalibrera') i meningen: 'Operatören måste kalibrera givaren'?",
+    "explanation": "Efter det modala hjälpverbet 'måste' står huvudverbet alltid i infinitiv utan 'att'.",
+    "options": [
+      {
+        "text": "Presens",
+        "isCorrect": false
+      },
+      {
+        "text": "Preteritum",
+        "isCorrect": false
+      },
+      {
+        "text": "Infinitiv",
+        "isCorrect": true
+      },
+      {
+        "text": "Supinum",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "seedKey": "q-009",
+    "categoryId": "verb1_2",
+    "difficulty": "medium",
+    "prompt": "Identifiera Verb 1 i meningen: 'Svarvaren ska snart starta maskinen.'",
+    "explanation": "'ska' är finit hjälpverb i presens (Verb 1) och står på position 2.",
+    "options": [
+      {
+        "text": "ska",
+        "isCorrect": true
+      },
+      {
+        "text": "snart",
+        "isCorrect": false
+      },
+      {
+        "text": "starta",
+        "isCorrect": false
+      },
+      {
+        "text": "maskinen",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "seedKey": "q-010",
+    "categoryId": "verb1_2",
+    "difficulty": "hard",
+    "prompt": "Komplettera med rätt infinitivform: 'Roboten kan lätt [...] tunga plåtar.'",
+    "explanation": "Modala hjälpverb (kan) efterföljs av grundformen infinitiv ('lyfta').",
+    "options": [
+      {
+        "text": "lyfta",
+        "isCorrect": true
+      },
+      {
+        "text": "lyfter",
+        "isCorrect": false
+      },
+      {
+        "text": "lyfte",
+        "isCorrect": false
+      },
+      {
+        "text": "lyft",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "seedKey": "q-011",
+    "categoryId": "supinum",
+    "difficulty": "easy",
+    "prompt": "Vilken är supinumformen av verbet 'att borra'?",
+    "explanation": "Supinum slutar oftast på -t och bildar dåtid med hjälpverbet 'har' ('har borrat').",
+    "options": [
+      {
+        "text": "borrar",
+        "isCorrect": false
+      },
+      {
+        "text": "borrade",
+        "isCorrect": false
+      },
+      {
+        "text": "borrat",
+        "isCorrect": true
+      },
+      {
+        "text": "borrande",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "seedKey": "q-012",
+    "categoryId": "supinum",
+    "difficulty": "medium",
+    "prompt": "Vad bildar supinum tillsammans med hjälpverbet 'har' eller 'hade'?",
+    "explanation": "'har/hade' + supinum bildar sammansatta dåtidsformer (perfekt/pluskvamperfekt).",
+    "options": [
+      {
+        "text": "Perfekt och Pluskvamperfekt",
+        "isCorrect": true
+      },
+      {
+        "text": "Presens och Preteritum",
+        "isCorrect": false
+      },
+      {
+        "text": "Futurum",
+        "isCorrect": false
+      },
+      {
+        "text": "Imperativ",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "seedKey": "q-013",
+    "categoryId": "supinum",
+    "difficulty": "hard",
+    "prompt": "Vilken mening använder korrekta supinumformen för verbet 'att gjuta'?",
+    "explanation": "'Gjutit' är den korrekta supinumformen av 'gjuta'.",
+    "options": [
+      {
+        "text": "Gjutaren har gjutit alla detaljer.",
+        "isCorrect": true
+      },
+      {
+        "text": "Gjutaren har gjöt alla detaljer.",
+        "isCorrect": false
+      },
+      {
+        "text": "Gjutaren har gjuta alla detaljer.",
+        "isCorrect": false
+      },
+      {
+        "text": "Gjutaren har gjutande detaljer.",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "seedKey": "q-014",
+    "categoryId": "partikelverb",
+    "difficulty": "easy",
+    "prompt": "Vad kännetecknar ett partikelverb som 'stänga av' (strömmen)?",
+    "explanation": "Partikelverb bär huvudbetoningen på partikeln ('stänga AV').",
+    "options": [
+      {
+        "text": "Betoningen ligger på verbet 'stänga'",
+        "isCorrect": false
+      },
+      {
+        "text": "Betoningen ligger starkt på partikeln 'AV'",
+        "isCorrect": true
+      },
+      {
+        "text": "Partikeln står alltid först",
+        "isCorrect": false
+      },
+      {
+        "text": "Det saknar objekt",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "seedKey": "q-015",
+    "categoryId": "partikelverb",
+    "difficulty": "medium",
+    "prompt": "Vilken mening innehåller ett partikelverb i verkstadssammanhang?",
+    "explanation": "'koppla UR' är ett partikelverb där partikeln ändrar betydelsen till avaktivera.",
+    "options": [
+      {
+        "text": "Montören tittade på ritningen.",
+        "isCorrect": false
+      },
+      {
+        "text": "Teknikern kopplade ur elskåpet före underhåll.",
+        "isCorrect": true
+      },
+      {
+        "text": "Gjutaren stod vid ugnen.",
+        "isCorrect": false
+      },
+      {
+        "text": "Svarvaren gick till lagret.",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "seedKey": "q-016",
+    "categoryId": "partikelverb",
+    "difficulty": "hard",
+    "prompt": "Vad innebär partikelverbet 'ställa in' i meningen: 'Operatören ställer in fräsen'?",
+    "explanation": "Industriellt betyder 'ställa IN' att ställa in exakta verktygsmått eller programvärden.",
+    "options": [
+      {
+        "text": "Förvara fräsen i ett skåp",
+        "isCorrect": false
+      },
+      {
+        "text": "Kalibrera mått och parametrar på maskinen",
+        "isCorrect": true
+      },
+      {
+        "text": "Ställa in ett möte",
+        "isCorrect": false
+      },
+      {
+        "text": "Stänga av fräsen",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "seedKey": "q-017",
+    "categoryId": "passiv_form",
+    "difficulty": "easy",
+    "prompt": "Vilken mening är skriven i passiv form?",
+    "explanation": "'Stålplåten skärs med laser' använder s-passiv för att framhäva objektet som bearbetas.",
+    "options": [
+      {
+        "text": "Operatören skär stålplåten.",
+        "isCorrect": false
+      },
+      {
+        "text": "Stålplåten skärs med laser.",
+        "isCorrect": true
+      },
+      {
+        "text": "Skär lasern stålplåten?",
+        "isCorrect": false
+      },
+      {
+        "text": "Skärverktyget var vasst.",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "seedKey": "q-018",
+    "categoryId": "passiv_form",
+    "difficulty": "medium",
+    "prompt": "Omvandla den aktiva satsen 'Teknikern mäter toleransen' till passiv form:",
+    "explanation": "Det direkta objektet ('toleransen') blir subjekt i den passiva satsen.",
+    "options": [
+      {
+        "text": "Toleransen mäts av teknikern.",
+        "isCorrect": true
+      },
+      {
+        "text": "Teknikern blev mätt tolerans.",
+        "isCorrect": false
+      },
+      {
+        "text": "Toleransen mätte teknikern.",
+        "isCorrect": false
+      },
+      {
+        "text": "Mäter toleransen teknikern.",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "seedKey": "q-019",
+    "categoryId": "passiv_form",
+    "difficulty": "hard",
+    "prompt": "Varför används passiv form så ofta i industriella tillverkningsinstruktioner?",
+    "explanation": "Passiv form skapar en objektiv och tydlig processbeskrivning.",
+    "options": [
+      {
+        "text": "För att dölja vem som arbetar.",
+        "isCorrect": false
+      },
+      {
+        "text": "För att sätta produkten och processen i centrum istället för personen.",
+        "isCorrect": true
+      },
+      {
+        "text": "För att det är enklare engelska.",
+        "isCorrect": false
+      },
+      {
+        "text": "För att undvika verb.",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "seedKey": "q-020",
+    "categoryId": "substantiv",
+    "difficulty": "easy",
+    "prompt": "Vad är rätt pluralform (flertal) av ett-ordet 'ett mått'?",
+    "explanation": "Ett-ord som slutar på konsonant ändras inte i obestämd plural: 'ett mått ➔ flera mått'.",
+    "options": [
+      {
+        "text": "måttar",
+        "isCorrect": false
+      },
+      {
+        "text": "måtten",
+        "isCorrect": false
+      },
+      {
+        "text": "mått",
+        "isCorrect": true
+      },
+      {
+        "text": "mätter",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "seedKey": "q-021",
+    "categoryId": "substantiv",
+    "difficulty": "medium",
+    "prompt": "Välj rätt bestämd form i plural för en-ordet 'en chuck':",
+    "explanation": "En chuck ➔ flera chuckar ➔ de där chuckarna.",
+    "options": [
+      {
+        "text": "chuckar",
+        "isCorrect": false
+      },
+      {
+        "text": "chuckarna",
+        "isCorrect": true
+      },
+      {
+        "text": "chucker",
+        "isCorrect": false
+      },
+      {
+        "text": "chucken",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "seedKey": "q-022",
+    "categoryId": "substantiv",
+    "difficulty": "hard",
+    "prompt": "Vad är obestämd form plural för facktermen 'ett vändskär'?",
+    "explanation": "Ett vändskär ➔ flera vändskär.",
+    "options": [
+      {
+        "text": "vändskärar",
+        "isCorrect": false
+      },
+      {
+        "text": "vändskär",
+        "isCorrect": true
+      },
+      {
+        "text": "vändskären",
+        "isCorrect": false
+      },
+      {
+        "text": "vändskärare",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "seedKey": "q-023",
+    "categoryId": "adverbial",
+    "difficulty": "easy",
+    "prompt": "Vilken typ av adverbial är 'med skjutmått' i: 'Operatören mätte hålet med skjutmått'?",
+    "explanation": "'Med skjutmått' anger PÅ VILKET SÄTT / med vilket verktyg handlingen gjordes.",
+    "options": [
+      {
+        "text": "Tidsadverbial",
+        "isCorrect": false
+      },
+      {
+        "text": "Rumsadverbial",
+        "isCorrect": false
+      },
+      {
+        "text": "Sättsadverbial (Medel/Verktyg)",
+        "isCorrect": true
+      },
+      {
+        "text": "Gradsadverbial",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "seedKey": "q-024",
+    "categoryId": "adverbial",
+    "difficulty": "medium",
+    "prompt": "Vilken ordning rekommenderar SRT-regeln för adverbial i slutet av en sats?",
+    "explanation": "SRT-regeln: Sätt (Hur) ➔ Rum (Var) ➔ Tid (När).",
+    "options": [
+      {
+        "text": "Tid - Rum - Sätt",
+        "isCorrect": false
+      },
+      {
+        "text": "Sätt - Rum - Tid",
+        "isCorrect": true
+      },
+      {
+        "text": "Rum - Tid - Sätt",
+        "isCorrect": false
+      },
+      {
+        "text": "Sätt - Tid - Rum",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "seedKey": "q-025",
+    "categoryId": "adverbial",
+    "difficulty": "hard",
+    "prompt": "Välj meningen som följer SRT-regeln korrekt i slutet av satsen:",
+    "explanation": "noggrant (Sätt) ➔ i verkstaden (Rum) ➔ igår (Tid).",
+    "options": [
+      {
+        "text": "Svarvaren arbetade noggrant i verkstaden igår.",
+        "isCorrect": true
+      },
+      {
+        "text": "Svarvaren arbetade igår i verkstaden noggrant.",
+        "isCorrect": false
+      },
+      {
+        "text": "Svarvaren arbetade i verkstaden noggrant igår.",
+        "isCorrect": false
+      },
+      {
+        "text": "Svarvaren arbetade igår noggrant i verkstaden.",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "seedKey": "q-026",
+    "categoryId": "subjekt_objekt",
+    "difficulty": "easy",
+    "prompt": "Identifiera SUBJEKTET i: 'Industriroboten plockar snabbt upp stålplåten.'",
+    "explanation": "Subjektet utför handlingen: 'Industriroboten'.",
+    "options": [
+      {
+        "text": "Industriroboten",
+        "isCorrect": true
+      },
+      {
+        "text": "plockar",
+        "isCorrect": false
+      },
+      {
+        "text": "snabbt",
+        "isCorrect": false
+      },
+      {
+        "text": "stålplåten",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "seedKey": "q-027",
+    "categoryId": "subjekt_objekt",
+    "difficulty": "medium",
+    "prompt": "Identifiera det DIREKTA OBJEKTET i: 'Operatören slipade den vassa kanten.'",
+    "explanation": "Direkta objektet besvarar: Vad slipade operatören? -> 'den vassa kanten'.",
+    "options": [
+      {
+        "text": "Operatören",
+        "isCorrect": false
+      },
+      {
+        "text": "slipade",
+        "isCorrect": false
+      },
+      {
+        "text": "den vassa kanten",
+        "isCorrect": true
+      },
+      {
+        "text": "vassa",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "seedKey": "q-028",
+    "categoryId": "subjekt_objekt",
+    "difficulty": "hard",
+    "prompt": "Identifiera det INDIREKTA OBJEKTET i: 'Leverantören skickade verkstaden nya borrstift.'",
+    "explanation": "Det indirekta objektet anger vem som mottar sändningen: 'verkstaden'.",
+    "options": [
+      {
+        "text": "Leverantören",
+        "isCorrect": false
+      },
+      {
+        "text": "skickade",
+        "isCorrect": false
+      },
+      {
+        "text": "verkstaden",
+        "isCorrect": true
+      },
+      {
+        "text": "nya borrstift",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "seedKey": "q-029",
+    "categoryId": "satsverbial",
+    "difficulty": "easy",
+    "prompt": "Vilket ord är ett satsverbial i: 'Använd alltid hörselskydd i hallen'?",
+    "explanation": "'Alltid' modifierar hela satsens sanningshalt.",
+    "options": [
+      {
+        "text": "Använd",
+        "isCorrect": false
+      },
+      {
+        "text": "alltid",
+        "isCorrect": true
+      },
+      {
+        "text": "hörselskydd",
+        "isCorrect": false
+      },
+      {
+        "text": "hallen",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "seedKey": "q-030",
+    "categoryId": "satsverbial",
+    "difficulty": "medium",
+    "prompt": "Var placeras satsverbialet 'inte' i en RAK huvudsats med ett verb?",
+    "explanation": "I huvudsats står satsverbialet efter verbet ('Teknikern kom INTE idag').",
+    "options": [
+      {
+        "text": "Före verbet",
+        "isCorrect": false
+      },
+      {
+        "text": "Direkt efter verbet",
+        "isCorrect": true
+      },
+      {
+        "text": "Alltid sist",
+        "isCorrect": false
+      },
+      {
+        "text": "Alltid först",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "seedKey": "q-031",
+    "categoryId": "satsverbial",
+    "difficulty": "hard",
+    "prompt": "Identifiera satsverbialen i: 'Operatören glömde tyvärr aldrig skyddsglasögonen.'",
+    "explanation": "Både 'tyvärr' och 'aldrig' är satsverbial.",
+    "options": [
+      {
+        "text": "tyvärr, aldrig",
+        "isCorrect": true
+      },
+      {
+        "text": "glömde, skyddsglasögonen",
+        "isCorrect": false
+      },
+      {
+        "text": "Operatören, glömde",
+        "isCorrect": false
+      },
+      {
+        "text": "glömde, aldrig",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "seedKey": "q-032",
+    "categoryId": "fundamentet",
+    "difficulty": "easy",
+    "prompt": "Vad är fundamentet i: 'Före varje start måste nödstoppet kontrolleras'?",
+    "explanation": "Fundamentet är allt som står före det första verbet ('måste').",
+    "options": [
+      {
+        "text": "Före varje start",
+        "isCorrect": true
+      },
+      {
+        "text": "måste",
+        "isCorrect": false
+      },
+      {
+        "text": "nödstoppet",
+        "isCorrect": false
+      },
+      {
+        "text": "kontrolleras",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "seedKey": "q-033",
+    "categoryId": "fundamentet",
+    "difficulty": "medium",
+    "prompt": "Hur många enskilda fraser/satsled ryms normalt i fundamentet?",
+    "explanation": "Fundamentsprincipen: Endast ett satsled placeras före verbet.",
+    "options": [
+      {
+        "text": "Endast ett satsled",
+        "isCorrect": true
+      },
+      {
+        "text": "Två satsled",
+        "isCorrect": false
+      },
+      {
+        "text": "Tre satsled",
+        "isCorrect": false
+      },
+      {
+        "text": "Hur många som helst",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "seedKey": "q-034",
+    "categoryId": "fundamentet",
+    "difficulty": "hard",
+    "prompt": "Identifiera fundamentet i: 'När ritningen har godkänts, påbörjas fräsningen.'",
+    "explanation": "Hela bisatsen 'När ritningen har godkänts' utgör ett sammansatt fundament.",
+    "options": [
+      {
+        "text": "När ritningen",
+        "isCorrect": false
+      },
+      {
+        "text": "När ritningen har godkänts",
+        "isCorrect": true
+      },
+      {
+        "text": "påbörjas",
+        "isCorrect": false
+      },
+      {
+        "text": "fräsningen",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "seedKey": "q-035",
+    "categoryId": "masterclass",
+    "difficulty": "expert",
+    "prompt": "Vilken mening är grammatiskt och terminologiskt helt korrekt?",
+    "explanation": "V2-regeln följs, s-passiv bildas korrekt och inga dubblerade adverbial finns.",
+    "options": [
+      {
+        "text": "Igår fasades alla kanter av på detaljen.",
+        "isCorrect": true
+      },
+      {
+        "text": "Igår alla kanter fasades av på detaljen.",
+        "isCorrect": false
+      },
+      {
+        "text": "Igår avfasades alla kanter av på detaljen av operatören igår.",
+        "isCorrect": false
+      },
+      {
+        "text": "Igår fasades alla kanter av på detaljen igår.",
+        "isCorrect": false
+      }
+    ]
+  },
+  {
+    "seedKey": "q-036",
+    "categoryId": "masterclass",
+    "difficulty": "expert",
+    "prompt": "Vilket grammatikfel finns i: 'Om ritningen stämmer inte, stoppas linjen'?",
+    "explanation": "I bisats står Inte Före Första verbet. Det ska vara: 'Om ritningen INTE stämmer...'.",
+    "options": [
+      {
+        "text": "Satsverbialet 'inte' bryter mot BIFF-regeln i bisatsen.",
+        "isCorrect": true
+      },
+      {
+        "text": "V2-regeln bryts i huvudsatsen.",
+        "isCorrect": false
+      },
+      {
+        "text": "Subjektet saknas.",
+        "isCorrect": false
+      },
+      {
+        "text": "Verbet 'stämmer' har fel form.",
+        "isCorrect": false
+      }
+    ]
+  }
+]
