@@ -47,6 +47,43 @@ export type ListGamesQuery = z.infer<typeof listGamesQuerySchema>;
 
 export const gameIdSchema = z.uuid();
 
+const questionOptionInputSchema = z.object({
+  text: z.string().trim().min(1).max(200),
+  isCorrect: z.boolean(),
+});
+
+const questionOptionsInputSchema = z
+  .array(questionOptionInputSchema)
+  .length(4)
+  .refine((options) => options.filter((option) => option.isCorrect).length === 1, {
+    message: "Exactly one option must be correct.",
+  });
+
+const questionInputBaseSchema = z.object({
+  prompt: z.string().trim().min(1).max(500),
+  explanation: z.string().trim().min(1).max(1000),
+  options: questionOptionsInputSchema,
+});
+
+// User-authored questions follow the same shape as the seed: four options with
+// exactly one correct, and bonus questions never belong to a category.
+export const createQuestionSchema = z.discriminatedUnion("kind", [
+  questionInputBaseSchema
+    .extend({
+      kind: z.literal("regular"),
+      categoryId: z.string().min(1),
+      difficulty: difficultySchema,
+    })
+    .strict(),
+  questionInputBaseSchema
+    .extend({
+      kind: z.literal("bonus"),
+      difficulty: z.literal("expert"),
+    })
+    .strict(),
+]);
+export type CreateQuestionInput = z.infer<typeof createQuestionSchema>;
+
 export const categoryDtoSchema = z.object({
   id: z.string(),
   name: z.string(),
@@ -140,3 +177,26 @@ export const gameSummarySchema = z.object({
   winner: gameSummaryWinnerSchema.nullable(),
 });
 export type GameSummary = z.infer<typeof gameSummarySchema>;
+
+const questionSummaryOptionSchema = z.object({
+  id: z.uuid(),
+  position: z.number().int(),
+  text: z.string(),
+  isCorrect: z.boolean(),
+});
+export type QuestionSummaryOption = z.infer<typeof questionSummaryOptionSchema>;
+
+// Authoring view only. Unlike GameSnapshot it may carry the correct option and
+// the explanation, because it never reaches a player mid-turn.
+export const questionSummarySchema = z.object({
+  id: z.uuid(),
+  origin: z.enum(["seed", "user"]),
+  kind: questionKindSchema,
+  categoryId: z.string().nullable(),
+  difficulty: difficultySchema,
+  prompt: z.string(),
+  explanation: z.string(),
+  isActive: z.boolean(),
+  options: z.array(questionSummaryOptionSchema),
+});
+export type QuestionSummary = z.infer<typeof questionSummarySchema>;

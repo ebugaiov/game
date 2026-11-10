@@ -4,6 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import {
   BookOpen,
+  BookPlus,
   Clock,
   History,
   Maximize,
@@ -323,6 +324,14 @@ export function GameBoard({ initialSnapshot, categories }: GameBoardProps) {
           >
             <History className="h-4 w-4" aria-hidden />
             <span className="hidden sm:inline">{strings.nav.history}</span>
+          </Link>
+
+          <Link
+            href="/questions"
+            className="flex items-center gap-1.5 rounded-xl border border-slate-600 bg-slate-800/90 px-3 py-2 text-xs font-semibold text-cyan-200 transition hover:bg-slate-700"
+          >
+            <BookPlus className="h-4 w-4" aria-hidden />
+            <span className="hidden sm:inline">{strings.nav.questions}</span>
           </Link>
 
           <Link

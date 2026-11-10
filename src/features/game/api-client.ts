@@ -1,10 +1,13 @@
 import type {
   AdjustScoreInput,
   AnswerResult,
+  CategoryDto,
   CreateGameInput,
+  CreateQuestionInput,
   DrawQuestionInput,
   GameSnapshot,
   GameSummary,
+  QuestionSummary,
 } from "./schemas";
 
 export class ApiError extends Error {
@@ -98,5 +101,26 @@ export function adjustScore(gameId: string, input: AdjustScoreInput): Promise<Ga
 export function finishGame(gameId: string): Promise<GameSnapshot> {
   return request<GameSnapshot>(`/api/games/${gameId}/finish`, {
     method: "POST",
+  });
+}
+
+export function listCategories(): Promise<CategoryDto[]> {
+  return request<CategoryDto[]>("/api/categories");
+}
+
+export function listQuestions(): Promise<QuestionSummary[]> {
+  return request<QuestionSummary[]>("/api/questions");
+}
+
+export function createQuestion(input: CreateQuestionInput): Promise<QuestionSummary> {
+  return request<QuestionSummary>("/api/questions", {
+    method: "POST",
+    body: JSON.stringify(input),
+  });
+}
+
+export function deleteQuestion(questionId: string): Promise<QuestionSummary> {
+  return request<QuestionSummary>(`/api/questions/${questionId}`, {
+    method: "DELETE",
   });
 }

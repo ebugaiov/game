@@ -37,7 +37,8 @@ export const questions = pgTable(
   "questions",
   {
     id: uuid("id").primaryKey().defaultRandom(),
-    seedKey: text("seed_key").notNull(),
+    // Null for questions authored in the app; seed rows keep a stable key.
+    seedKey: text("seed_key"),
     kind: questionKindEnum("kind").notNull(),
     categoryId: text("category_id").references(() => categories.id),
     difficulty: difficultyEnum("difficulty").notNull(),

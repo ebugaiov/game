@@ -3,7 +3,7 @@
 import { useState, type FormEvent } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { History, Loader2, Plus, Rocket, Settings, Trash2 } from "lucide-react";
+import { BookPlus, History, Loader2, Plus, Rocket, Settings, Trash2 } from "lucide-react";
 import { createGame } from "../api-client";
 import type { Difficulty } from "../domain/types";
 import { playerColor, playerEmoji } from "./palette";
@@ -101,13 +101,22 @@ export function SetupForm() {
           </div>
         </div>
 
-        <Link
-          href="/history"
-          className="flex items-center gap-1.5 rounded-xl border border-indigo-400/40 bg-indigo-600/40 px-3.5 py-2 text-xs font-semibold text-indigo-200 transition hover:bg-indigo-600/60"
-        >
-          <History className="h-4 w-4" aria-hidden />
-          {strings.nav.history}
-        </Link>
+        <div className="flex flex-wrap items-center justify-center gap-2">
+          <Link
+            href="/history"
+            className="flex items-center gap-1.5 rounded-xl border border-indigo-400/40 bg-indigo-600/40 px-3.5 py-2 text-xs font-semibold text-indigo-200 transition hover:bg-indigo-600/60"
+          >
+            <History className="h-4 w-4" aria-hidden />
+            {strings.nav.history}
+          </Link>
+          <Link
+            href="/questions"
+            className="flex items-center gap-1.5 rounded-xl border border-cyan-400/40 bg-cyan-600/30 px-3.5 py-2 text-xs font-semibold text-cyan-200 transition hover:bg-cyan-600/50"
+          >
+            <BookPlus className="h-4 w-4" aria-hidden />
+            {strings.nav.questions}
+          </Link>
+        </div>
       </header>
 
       <main className="mx-auto flex w-full max-w-2xl flex-1 items-start justify-center">

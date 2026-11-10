@@ -1,0 +1,1 @@
+ALTER TABLE "questions" ALTER COLUMN "seed_key" DROP NOT NULL;
