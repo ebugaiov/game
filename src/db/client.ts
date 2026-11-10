@@ -9,7 +9,7 @@ const pool =
   globalForDb.industrinsPool ??
   new Pool({
     connectionString: getEnv().databaseUrl,
-    max: 10,
+    max: 3,
   });
 
 if (process.env.NODE_ENV !== "production") {
