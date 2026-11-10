@@ -17,6 +17,7 @@ import { ApiError } from "../api-client";
 import type { Difficulty } from "../domain/types";
 import type { CategoryDto, QuestionSummary } from "../schemas";
 import { createQuestionSchema } from "../schemas";
+import { AppLogo } from "./app-logo";
 import { FlagBackground } from "./flag-background";
 import { DIFFICULTY_LABELS, strings } from "./strings";
 
@@ -185,9 +186,7 @@ export function QuestionsManager({ initialCategories, initialQuestions }: Questi
 
       <header className="glass-panel mx-auto mb-4 flex w-full max-w-5xl flex-col items-center justify-between gap-3 rounded-2xl p-3.5 shadow-2xl sm:flex-row sm:p-4">
         <div className="flex items-center gap-3">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-tr from-cyan-600 via-amber-400 to-yellow-400 text-2xl shadow-lg glow-yellow">
-            ⚙️
-          </div>
+          <AppLogo />
           <div>
             <h1 className="bg-gradient-to-r from-yellow-300 via-amber-200 to-cyan-300 bg-clip-text text-xl font-black tracking-tight text-transparent sm:text-2xl">
               {strings.questions.title}

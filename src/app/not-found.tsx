@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AppLogo } from "@/features/game/ui/app-logo";
 import { FlagBackground } from "@/features/game/ui/flag-background";
 import { strings } from "@/features/game/ui/strings";
 
@@ -7,7 +8,7 @@ export default function NotFound() {
     <div className="relative flex min-h-screen flex-col items-center justify-center p-4 text-slate-100">
       <FlagBackground />
       <div className="glass-panel w-full max-w-md rounded-3xl p-8 text-center">
-        <div className="mb-4 text-5xl">⚙️</div>
+        <AppLogo className="mx-auto mb-4 h-16 w-16" />
         <h1 className="text-xl font-black text-yellow-300">{strings.common.gameNotFound}</h1>
         <Link
           href="/"
