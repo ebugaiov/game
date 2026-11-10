@@ -7,7 +7,10 @@ import { loadEnv } from "./load-env";
 loadEnv();
 
 const isTest = process.argv.includes("--test");
-const connectionString = isTest ? process.env.TEST_DATABASE_URL : process.env.DATABASE_URL;
+// Neon's pooled endpoint is not meant for DDL; prefer the direct URL when one is provided.
+const connectionString = isTest
+  ? process.env.TEST_DATABASE_URL
+  : (process.env.DATABASE_URL_UNPOOLED ?? process.env.DATABASE_URL);
 
 if (!connectionString) {
   throw new Error(`${isTest ? "TEST_DATABASE_URL" : "DATABASE_URL"} is not set.`);

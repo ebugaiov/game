@@ -43,6 +43,18 @@ Full container mode (app + one-shot migrate/seed):
 docker compose --profile app up --build
 ```
 
+## Deployment
+
+Local development always uses the Postgres container. The deployed app uses Neon Postgres
+(project `withered-frog-33451149`):
+
+- Locally, `.env` contains only the Docker URLs. `.env.neon` (gitignored) holds the Neon
+  strings and is never loaded by Next.js or `src/db/load-env.ts`.
+- On the host, set `DATABASE_URL` (pooled), `DATABASE_URL_UNPOOLED` (direct, used by
+  migrations) and the `NEON_*` variables from `.env.neon` in the platform's environment
+  settings.
+- Run `pnpm db:migrate && pnpm db:seed` once against production before the first deploy.
+
 ## Commands
 
 ```bash
