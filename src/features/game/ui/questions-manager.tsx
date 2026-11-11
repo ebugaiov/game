@@ -17,8 +17,10 @@ import { ApiError } from "../api-client";
 import type { Difficulty } from "../domain/types";
 import type { CategoryDto, QuestionSummary } from "../schemas";
 import { createQuestionSchema } from "../schemas";
-import { AppLogo } from "./app-logo";
-import { FlagBackground } from "./flag-background";
+import { Button, buttonStyles } from "./button";
+import { PageShell } from "./page-shell";
+import { categoryColor } from "./palette";
+import { fieldClass, labelClass, panelClass, panelRaisedClass } from "./styles";
 import { DIFFICULTY_LABELS, strings } from "./strings";
 
 const OPTION_COUNT = 4;
@@ -177,38 +179,33 @@ export function QuestionsManager({ initialCategories, initialQuestions }: Questi
     }
   };
 
-  const fieldClassName =
-    "w-full rounded-xl border border-slate-700 bg-slate-900 px-3 py-2 text-xs font-semibold text-slate-100 outline-none transition focus:border-yellow-400";
-
   return (
-    <div className="relative flex min-h-screen flex-col p-2 text-slate-100 sm:p-4 md:p-6">
-      <FlagBackground />
-
-      <header className="glass-panel mx-auto mb-4 flex w-full max-w-5xl flex-col items-center justify-between gap-3 rounded-2xl p-3.5 shadow-2xl sm:flex-row sm:p-4">
-        <div className="flex items-center gap-3">
-          <AppLogo />
-          <div>
-            <h1 className="bg-gradient-to-r from-yellow-300 via-amber-200 to-cyan-300 bg-clip-text text-xl font-black tracking-tight text-transparent sm:text-2xl">
-              {strings.questions.title}
-            </h1>
-            <p className="text-xs font-medium text-slate-300">{strings.questions.subtitle}</p>
-          </div>
-        </div>
-
-        <Link
-          href="/"
-          className="flex items-center gap-1.5 rounded-xl border border-yellow-400/50 bg-yellow-500/30 px-3.5 py-2 text-xs font-semibold text-yellow-200 transition hover:bg-yellow-500/50"
-        >
+    <PageShell
+      maxWidth="max-w-5xl"
+      actions={
+        <Link href="/" className={buttonStyles("primary", "sm")}>
           <Home className="h-4 w-4" aria-hidden />
           {strings.questions.backHome}
         </Link>
-      </header>
+      }
+    >
+      <div className="mb-5 flex items-center gap-3">
+        <span className="flex h-11 w-11 items-center justify-center rounded-lg border-2 border-ink-600 bg-ink-700 text-gold-300">
+          <Library className="h-5 w-5" aria-hidden />
+        </span>
+        <div>
+          <h1 className="font-display text-2xl font-bold text-ink-100 sm:text-3xl">
+            {strings.questions.title}
+          </h1>
+          <p className="text-sm text-ink-400">{strings.questions.subtitle}</p>
+        </div>
+      </div>
 
-      <main className="mx-auto flex w-full max-w-5xl flex-1 flex-col gap-4 pb-8">
+      <div className="flex w-full flex-col gap-4 pb-8">
         {error ? (
           <p
             role="alert"
-            className="flex items-start gap-2 rounded-xl border border-rose-500/50 bg-rose-950/70 p-2.5 text-xs font-semibold text-rose-200"
+            className="flex items-start gap-2 rounded-lg border border-danger-400/50 bg-danger-400/10 p-3 text-sm font-semibold text-danger-300"
           >
             <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" aria-hidden />
             <span>{error}</span>
@@ -217,26 +214,21 @@ export function QuestionsManager({ initialCategories, initialQuestions }: Questi
 
         <div role="status" aria-live="polite">
           {status ? (
-            <p className="flex items-center gap-2 rounded-xl border border-emerald-500/50 bg-emerald-950/60 p-2.5 text-xs font-semibold text-emerald-200">
+            <p className="flex items-center gap-2 rounded-lg border border-success-400/50 bg-success-400/10 p-3 text-sm font-semibold text-success-300">
               <CheckCircle2 className="h-4 w-4 shrink-0" aria-hidden />
               <span>{status}</span>
             </p>
           ) : null}
         </div>
 
-        <form
-          onSubmit={submit}
-          className="glass-panel flex flex-col gap-4 rounded-3xl p-5 shadow-2xl sm:p-6"
-        >
-          <h2 className="flex items-center gap-2 border-b border-slate-700/60 pb-3 text-lg font-black text-yellow-300">
-            <FilePlus2 className="h-5 w-5" aria-hidden />
+        <form onSubmit={submit} className={`${panelClass} flex flex-col gap-5 p-5 sm:p-6`}>
+          <h2 className="flex items-center gap-2 border-b border-ink-600/80 pb-4 font-display text-xl font-bold text-ink-100">
+            <FilePlus2 className="h-5 w-5 text-gold-300" aria-hidden />
             {strings.questions.formTitle}
           </h2>
 
           <div>
-            <span className="mb-1.5 block text-xs font-bold uppercase text-slate-300">
-              {strings.questions.kindLabel}
-            </span>
+            <span className={labelClass}>{strings.questions.kindLabel}</span>
             <div className="grid grid-cols-2 gap-2">
               {(["regular", "bonus"] as const).map((value) => {
                 const active = kind === value;
@@ -246,8 +238,10 @@ export function QuestionsManager({ initialCategories, initialQuestions }: Questi
                     type="button"
                     onClick={() => selectKind(value)}
                     aria-pressed={active}
-                    className={`rounded-xl border border-slate-700 bg-slate-800 px-2 py-2 text-xs font-bold text-slate-200 transition ${
-                      active ? "bg-slate-700 ring-2 ring-yellow-400" : ""
+                    className={`rounded-lg border-2 px-2 py-2.5 text-sm font-bold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-periwinkle-400 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-800 ${
+                      active
+                        ? "border-periwinkle-400 bg-periwinkle-400/15 text-periwinkle-300"
+                        : "border-ink-600 bg-ink-700 text-ink-300 hover:border-ink-550 hover:text-ink-100"
                     }`}
                   >
                     {strings.questions.kinds[value]}
@@ -260,17 +254,14 @@ export function QuestionsManager({ initialCategories, initialQuestions }: Questi
           <div className="grid gap-3 sm:grid-cols-2">
             {kind === "regular" ? (
               <div>
-                <label
-                  htmlFor="question-category"
-                  className="mb-1.5 block text-xs font-bold uppercase text-slate-300"
-                >
+                <label htmlFor="question-category" className={labelClass}>
                   {strings.questions.categoryLabel}
                 </label>
                 <select
                   id="question-category"
                   value={categoryId}
                   onChange={(event) => setCategoryId(event.target.value)}
-                  className={fieldClassName}
+                  className={fieldClass}
                 >
                   {initialCategories.map((category) => (
                     <option key={category.id} value={category.id}>
@@ -282,10 +273,7 @@ export function QuestionsManager({ initialCategories, initialQuestions }: Questi
             ) : null}
 
             <div>
-              <label
-                htmlFor="question-difficulty"
-                className="mb-1.5 block text-xs font-bold uppercase text-slate-300"
-              >
+              <label htmlFor="question-difficulty" className={labelClass}>
                 {strings.questions.difficultyLabel}
               </label>
               <select
@@ -293,7 +281,7 @@ export function QuestionsManager({ initialCategories, initialQuestions }: Questi
                 value={kind === "bonus" ? "expert" : difficulty}
                 onChange={(event) => setDifficulty(event.target.value as Difficulty)}
                 disabled={kind === "bonus"}
-                className={`${fieldClassName} disabled:cursor-not-allowed disabled:opacity-60`}
+                className={fieldClass}
               >
                 {DIFFICULTIES.map((value) => (
                   <option key={value} value={value}>
@@ -305,10 +293,7 @@ export function QuestionsManager({ initialCategories, initialQuestions }: Questi
           </div>
 
           <div>
-            <label
-              htmlFor="question-prompt"
-              className="mb-1.5 block text-xs font-bold uppercase text-slate-300"
-            >
+            <label htmlFor="question-prompt" className={labelClass}>
               {strings.questions.promptLabel}
             </label>
             <textarea
@@ -318,15 +303,12 @@ export function QuestionsManager({ initialCategories, initialQuestions }: Questi
               rows={3}
               onChange={(event) => setPrompt(event.target.value)}
               placeholder={strings.questions.promptPlaceholder}
-              className={fieldClassName}
+              className={fieldClass}
             />
           </div>
 
           <div>
-            <label
-              htmlFor="question-explanation"
-              className="mb-1.5 block text-xs font-bold uppercase text-slate-300"
-            >
+            <label htmlFor="question-explanation" className={labelClass}>
               {strings.questions.explanationLabel}
             </label>
             <textarea
@@ -336,21 +318,19 @@ export function QuestionsManager({ initialCategories, initialQuestions }: Questi
               rows={2}
               onChange={(event) => setExplanation(event.target.value)}
               placeholder={strings.questions.explanationPlaceholder}
-              className={fieldClassName}
+              className={fieldClass}
             />
           </div>
 
           <fieldset className="space-y-2">
-            <legend className="mb-1.5 text-xs font-bold uppercase text-slate-300">
-              {strings.questions.optionsLabel}
-            </legend>
+            <legend className={labelClass}>{strings.questions.optionsLabel}</legend>
             {options.map((option, index) => (
               <div
                 key={index}
-                className={`flex items-center gap-2 rounded-xl border p-2 ${
+                className={`flex items-center gap-2 rounded-lg border p-2 transition-colors ${
                   option.isCorrect
-                    ? "border-emerald-500/60 bg-emerald-950/30"
-                    : "border-slate-700 bg-slate-900/90"
+                    ? "border-success-400/60 bg-success-400/10"
+                    : "border-ink-600 bg-ink-900/80"
                 }`}
               >
                 <input
@@ -359,9 +339,9 @@ export function QuestionsManager({ initialCategories, initialQuestions }: Questi
                   checked={option.isCorrect}
                   onChange={() => markCorrect(index)}
                   aria-label={`${strings.questions.correctLabel} ${index + 1}`}
-                  className="h-4 w-4 shrink-0 accent-emerald-400"
+                  className="h-4 w-4 shrink-0 accent-periwinkle-400"
                 />
-                <span className="w-4 shrink-0 text-center text-xs font-black text-slate-400">
+                <span className="w-4 shrink-0 text-center text-xs font-bold text-ink-500">
                   {index + 1}
                 </span>
                 <input
@@ -371,10 +351,10 @@ export function QuestionsManager({ initialCategories, initialQuestions }: Questi
                   onChange={(event) => updateOptionText(index, event.target.value)}
                   placeholder={strings.questions.optionLabel(index + 1)}
                   aria-label={strings.questions.optionLabel(index + 1)}
-                  className="w-full rounded-lg border border-slate-700 bg-slate-950 px-2.5 py-1.5 text-xs font-semibold text-slate-100 outline-none transition focus:border-yellow-400"
+                  className="w-full rounded-md border-2 border-ink-600 bg-ink-900 px-2.5 py-1.5 text-sm font-medium text-ink-200 outline-none transition-colors placeholder:text-ink-500 focus:border-periwinkle-400"
                 />
                 {option.isCorrect ? (
-                  <span className="shrink-0 rounded-md border border-emerald-500/40 bg-emerald-500/20 px-2 py-0.5 text-[10px] font-bold text-emerald-300">
+                  <span className="shrink-0 rounded-full border border-success-400/40 bg-success-400/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-success-300">
                     {strings.questions.correctBadge}
                   </span>
                 ) : null}
@@ -383,11 +363,13 @@ export function QuestionsManager({ initialCategories, initialQuestions }: Questi
           </fieldset>
 
           <div className="flex flex-col gap-2 pt-1 sm:flex-row">
-            <button
+            <Button
               type="submit"
+              variant="primary"
+              size="lg"
               disabled={busy}
               aria-busy={busy}
-              className="flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-yellow-500 via-amber-500 to-yellow-600 py-3 text-sm font-black uppercase tracking-wider text-slate-950 shadow-xl transition hover:from-yellow-400 hover:to-amber-400 disabled:cursor-not-allowed disabled:opacity-60 glow-yellow"
+              className="w-full font-display uppercase tracking-[0.14em]"
             >
               {busy ? (
                 <Loader2 className="h-4 w-4 animate-spin" aria-hidden />
@@ -395,24 +377,25 @@ export function QuestionsManager({ initialCategories, initialQuestions }: Questi
                 <Save className="h-4 w-4" aria-hidden />
               )}
               {busy ? strings.questions.saving : strings.questions.save}
-            </button>
-            <button
-              type="button"
+            </Button>
+            <Button
+              variant="secondary"
+              size="lg"
               onClick={resetForm}
               disabled={busy}
-              className="w-full rounded-2xl border border-slate-600 bg-slate-800 py-3 text-xs font-bold text-slate-300 transition hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-60 sm:w-auto sm:px-5"
+              className="w-full sm:w-auto"
             >
               {strings.questions.reset}
-            </button>
+            </Button>
           </div>
         </form>
 
-        <section className="glass-panel flex flex-col gap-3 rounded-3xl p-5 shadow-2xl sm:p-6">
-          <div className="flex flex-col justify-between gap-3 border-b border-slate-700/60 pb-3 sm:flex-row sm:items-center">
-            <h2 className="flex items-center gap-2 text-lg font-black text-cyan-300">
-              <Library className="h-5 w-5" aria-hidden />
+        <section className={`${panelClass} flex flex-col gap-4 p-5 sm:p-6`}>
+          <div className="flex flex-col justify-between gap-3 border-b border-ink-600/80 pb-4 sm:flex-row sm:items-center">
+            <h2 className="flex items-center gap-2 font-display text-xl font-bold text-ink-100">
+              <Library className="h-5 w-5 text-periwinkle-300" aria-hidden />
               {strings.questions.listTitle}
-              <span className="rounded-md border border-cyan-500/30 bg-cyan-500/20 px-2 py-0.5 text-xs font-extrabold text-cyan-200">
+              <span className="rounded-full border border-periwinkle-400/30 bg-periwinkle-400/10 px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-wider text-periwinkle-300">
                 {strings.questions.listCount(visibleQuestions.length)}
               </span>
             </h2>
@@ -424,7 +407,7 @@ export function QuestionsManager({ initialCategories, initialQuestions }: Questi
                   setKindFilter(event.target.value as "all" | QuestionSummary["kind"])
                 }
                 aria-label={strings.questions.filterKind}
-                className={fieldClassName}
+                className={`${fieldClass} sm:w-auto`}
               >
                 <option value="all">{strings.questions.allKinds}</option>
                 <option value="regular">{strings.questions.kinds.regular}</option>
@@ -434,7 +417,7 @@ export function QuestionsManager({ initialCategories, initialQuestions }: Questi
                 value={categoryFilter}
                 onChange={(event) => setCategoryFilter(event.target.value)}
                 aria-label={strings.questions.filterCategory}
-                className={fieldClassName}
+                className={`${fieldClass} sm:w-auto`}
               >
                 <option value="all">{strings.questions.allCategories}</option>
                 {initialCategories.map((category) => (
@@ -447,9 +430,7 @@ export function QuestionsManager({ initialCategories, initialQuestions }: Questi
           </div>
 
           {visibleQuestions.length === 0 ? (
-            <p className="py-6 text-center text-xs font-semibold text-slate-400">
-              {strings.questions.empty}
-            </p>
+            <p className="py-8 text-center text-sm text-ink-400">{strings.questions.empty}</p>
           ) : (
             <ul className="space-y-2.5">
               {visibleQuestions.map((question) => {
@@ -458,84 +439,82 @@ export function QuestionsManager({ initialCategories, initialQuestions }: Questi
                   : undefined;
                 const confirming = confirmId === question.id;
                 const deleting = deletingId === question.id;
+                const accent = category ? categoryColor(category) : null;
 
                 return (
-                  <li
-                    key={question.id}
-                    className="space-y-2.5 rounded-2xl border border-slate-800 bg-slate-900/70 p-3.5"
-                  >
+                  <li key={question.id} className={`${panelRaisedClass} space-y-2.5 p-3.5`}>
                     <div className="flex flex-wrap items-start justify-between gap-2">
                       <div className="flex flex-wrap items-center gap-1.5">
-                        {category ? (
+                        {category && accent ? (
                           <span
-                            className="rounded-md border px-2 py-0.5 text-[10px] font-bold"
+                            className="inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[10px] font-bold"
                             style={{
-                              backgroundColor: `${category.color}25`,
-                              color: category.color,
-                              borderColor: `${category.color}60`,
+                              backgroundColor: `${accent}1f`,
+                              color: accent,
+                              borderColor: `${accent}66`,
                             }}
                           >
                             {category.icon} {category.name}
                           </span>
                         ) : null}
-                        <span className="rounded-md border border-slate-600 bg-slate-800 px-2 py-0.5 text-[10px] font-bold text-slate-300">
+                        <span className="rounded-full border border-ink-550 bg-ink-800 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-ink-300">
                           {DIFFICULTY_LABELS[question.difficulty]}
                         </span>
-                        <span className="rounded-md border border-indigo-500/40 bg-indigo-500/20 px-2 py-0.5 text-[10px] font-bold text-indigo-200">
+                        <span className="rounded-full border border-periwinkle-400/40 bg-periwinkle-400/10 px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-periwinkle-300">
                           {strings.questions.kindBadge[question.kind]}
                         </span>
-                        <span className="rounded-md border border-slate-700 bg-slate-950 px-2 py-0.5 font-mono text-[10px] text-slate-400">
+                        <span className="rounded-full border border-ink-550 bg-ink-900 px-2 py-0.5 font-mono text-[10px] text-ink-400">
                           {strings.questions.origin[question.origin]}
                         </span>
                       </div>
 
                       {confirming ? (
                         <div className="flex gap-1.5">
-                          <button
-                            type="button"
+                          <Button
+                            variant="danger"
+                            size="sm"
                             onClick={() => void remove(question.id)}
                             disabled={deleting}
-                            className="rounded-lg border border-rose-500/50 bg-rose-600/40 px-2.5 py-1 text-[10px] font-bold text-rose-100 transition hover:bg-rose-600/60 disabled:cursor-not-allowed disabled:opacity-60"
                           >
                             {strings.questions.confirmDelete}
-                          </button>
-                          <button
-                            type="button"
+                          </Button>
+                          <Button
+                            variant="outline"
+                            size="sm"
                             onClick={() => setConfirmId(null)}
                             disabled={deleting}
-                            className="rounded-lg border border-slate-600 bg-slate-800 px-2.5 py-1 text-[10px] font-bold text-slate-300 transition hover:bg-slate-700"
                           >
                             {strings.questions.cancelDelete}
-                          </button>
+                          </Button>
                         </div>
                       ) : (
-                        <button
-                          type="button"
+                        <Button
+                          variant="outline"
+                          size="sm"
                           onClick={() => setConfirmId(question.id)}
-                          className="flex items-center gap-1 rounded-lg border border-slate-700 bg-slate-800 px-2.5 py-1 text-[10px] font-bold text-slate-300 transition hover:border-rose-500/50 hover:text-rose-200"
                         >
                           <Trash2 className="h-3.5 w-3.5" aria-hidden />
                           {strings.questions.delete}
-                        </button>
+                        </Button>
                       )}
                     </div>
 
-                    <p className="text-sm font-semibold text-slate-100">{question.prompt}</p>
+                    <p className="text-sm font-semibold text-ink-100">{question.prompt}</p>
 
                     <ul className="grid gap-1 sm:grid-cols-2">
                       {question.options.map((option) => (
                         <li
                           key={option.id}
-                          className={`flex items-start gap-1.5 rounded-lg border px-2 py-1 text-xs ${
+                          className={`flex items-start gap-1.5 rounded-md border px-2 py-1.5 text-xs ${
                             option.isCorrect
-                              ? "border-emerald-500/50 bg-emerald-950/40 text-emerald-200"
-                              : "border-slate-800 bg-slate-950/60 text-slate-300"
+                              ? "border-success-400/50 bg-success-400/10 text-success-300"
+                              : "border-ink-600 bg-ink-900/60 text-ink-300"
                           }`}
                         >
                           {option.isCorrect ? (
                             <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden />
                           ) : (
-                            <span className="mt-0.5 w-3.5 shrink-0 text-center text-[10px] text-slate-500">
+                            <span className="mt-0.5 w-3.5 shrink-0 text-center text-[10px] text-ink-500">
                               {option.position + 1}
                             </span>
                           )}
@@ -544,14 +523,14 @@ export function QuestionsManager({ initialCategories, initialQuestions }: Questi
                       ))}
                     </ul>
 
-                    <p className="text-xs text-slate-400">{question.explanation}</p>
+                    <p className="text-xs leading-relaxed text-ink-400">{question.explanation}</p>
                   </li>
                 );
               })}
             </ul>
           )}
         </section>
-      </main>
-    </div>
+      </div>
+    </PageShell>
   );
 }

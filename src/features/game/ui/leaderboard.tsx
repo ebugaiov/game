@@ -9,7 +9,7 @@ type LeaderboardProps = {
 
 export function Leaderboard({ players, currentSeat }: LeaderboardProps) {
   return (
-    <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+    <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5">
       {players.map((player) => {
         const isCurrent = player.seat === currentSeat;
         const color = playerColor(player.seat);
@@ -17,25 +17,21 @@ export function Leaderboard({ players, currentSeat }: LeaderboardProps) {
         return (
           <div
             key={player.id}
-            className={`glass-card flex items-center justify-between rounded-2xl border p-2.5 transition duration-200 ${
-              isCurrent
-                ? "active-turn-pulse border-yellow-400 bg-slate-800/90 ring-2 ring-yellow-400/50 glow-yellow"
-                : "border-slate-800"
+            className={`flex items-center justify-between gap-2 rounded-lg border bg-ink-800 p-2.5 transition-colors ${
+              isCurrent ? "border-periwinkle-400 ring-1 ring-periwinkle-400/40" : "border-ink-600"
             }`}
           >
-            <div className="flex items-center gap-2 overflow-hidden">
+            <div className="flex min-w-0 items-center gap-2">
               <div
-                className={`flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg text-sm font-black text-slate-950 shadow-md ${color.bg}`}
+                className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-md text-sm font-black text-ink-900 shadow-sm ${color.bg}`}
               >
                 {playerEmoji(player.seat)}
               </div>
-              <div className="truncate">
-                <h4 className="flex items-center gap-1 truncate text-xs font-extrabold text-slate-100">
-                  {player.name}
-                </h4>
+              <div className="min-w-0">
+                <h4 className="truncate text-xs font-bold text-ink-100">{player.name}</h4>
                 <span
-                  className={`block text-[9px] ${
-                    isCurrent ? "font-black text-yellow-300" : "text-slate-400"
+                  className={`block truncate text-[9px] font-semibold uppercase tracking-wider ${
+                    isCurrent ? "text-periwinkle-300" : "text-ink-500"
                   }`}
                 >
                   {isCurrent
@@ -44,9 +40,11 @@ export function Leaderboard({ players, currentSeat }: LeaderboardProps) {
                 </span>
               </div>
             </div>
-            <div className="ml-1 flex-shrink-0 text-right">
-              <span className={`text-sm font-black ${color.text}`}>{player.score}</span>
-              <span className="block text-[9px] font-semibold text-slate-400">
+            <div className="shrink-0 text-right">
+              <span className={`font-display text-base font-bold ${color.text}`}>
+                {player.score}
+              </span>
+              <span className="block text-[9px] font-bold uppercase tracking-wider text-ink-500">
                 {strings.game.coins}
               </span>
             </div>

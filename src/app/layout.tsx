@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { DM_Sans, Fraunces } from "next/font/google";
 import { strings } from "@/features/game/ui/strings";
 import "./globals.css";
 
-const inter = Inter({
+const dmSans = DM_Sans({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-dm-sans",
+  display: "swap",
+});
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-fraunces",
   display: "swap",
 });
 
@@ -16,10 +22,8 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="sv" className={`dark ${inter.variable}`}>
-      <body className="min-h-screen bg-[#050811] font-sans text-slate-100 antialiased">
-        {children}
-      </body>
+    <html lang="sv" className={`dark ${dmSans.variable} ${fraunces.variable}`}>
+      <body className="min-h-screen bg-ink-750 font-sans text-ink-200 antialiased">{children}</body>
     </html>
   );
 }

@@ -54,13 +54,13 @@ export function Modal({
     <dialog
       ref={dialogRef}
       aria-labelledby={labelledBy}
-      className="m-auto w-[calc(100%-1.5rem)] max-w-3xl border-0 bg-transparent p-0 text-slate-100 backdrop:bg-slate-950/85 backdrop:backdrop-blur-md"
+      className="m-auto w-[calc(100%_-_1.5rem)] max-w-3xl border-0 bg-transparent p-0 text-ink-200 backdrop:bg-ink-950/85 backdrop:backdrop-blur-sm"
       onClick={(event) => {
         if (event.target === dialogRef.current && dismissible) onCloseRef.current?.();
       }}
     >
       <div
-        className={`glass-panel mx-auto max-h-[92vh] w-full overflow-y-auto rounded-3xl p-5 shadow-2xl sm:p-7 ${className}`}
+        className={`mx-auto max-h-[92vh] w-full overflow-y-auto rounded-xl border-2 border-ink-600 bg-ink-800 p-5 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.95)] sm:p-7 ${className}`}
       >
         {children}
       </div>

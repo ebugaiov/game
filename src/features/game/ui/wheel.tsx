@@ -4,6 +4,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { Dices } from "lucide-react";
 import { computeSpin, sliceAtPointer } from "../domain/spin";
 import type { CategoryDto } from "../schemas";
+import { Button } from "./button";
+import { categoryColor } from "./palette";
 import { strings } from "./strings";
 import { usePrefersReducedMotion } from "./use-reduced-motion";
 
@@ -14,6 +16,9 @@ type WheelProps = {
   onSpinEnd: (categoryId: string) => void;
   onTick: () => void;
 };
+
+const INK = "#121620";
+const GOLD = "#e5ae3c";
 
 export function Wheel({ categories, currentPlayerName, disabled, onSpinEnd, onTick }: WheelProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -65,19 +70,19 @@ export function Wheel({ categories, currentPlayerName, disabled, onSpinEnd, onTi
       context.moveTo(cx, cy);
       context.arc(cx, cy, radius, startAngle, endAngle);
       context.closePath();
-      context.fillStyle = category.color;
+      context.fillStyle = categoryColor(category);
       context.fill();
       context.lineWidth = 2.5;
-      context.strokeStyle = "#070b14";
+      context.strokeStyle = INK;
       context.stroke();
 
       const pinX = cx + (radius - 4) * Math.cos(startAngle);
       const pinY = cy + (radius - 4) * Math.sin(startAngle);
       context.beginPath();
       context.arc(pinX, pinY, 3.5, 0, Math.PI * 2);
-      context.fillStyle = "#fecc00";
+      context.fillStyle = GOLD;
       context.fill();
-      context.strokeStyle = "#000000";
+      context.strokeStyle = INK;
       context.lineWidth = 1;
       context.stroke();
 
@@ -86,9 +91,9 @@ export function Wheel({ categories, currentPlayerName, disabled, onSpinEnd, onTi
       context.rotate(startAngle + sliceAngle / 2);
       context.textAlign = "right";
       context.fillStyle = "#ffffff";
-      context.font = "bold 10px Inter, sans-serif";
-      context.shadowColor = "rgba(0,0,0,0.85)";
-      context.shadowBlur = 5;
+      context.font = "bold 10px 'DM Sans', sans-serif";
+      context.shadowColor = "rgba(12,15,24,0.9)";
+      context.shadowBlur = 4;
       let label = `${category.icon} ${category.name}`;
       if (label.length > 20) label = `${label.substring(0, 18)}..`;
       context.fillText(label, radius - 20, 4);
@@ -98,13 +103,13 @@ export function Wheel({ categories, currentPlayerName, disabled, onSpinEnd, onTi
     context.beginPath();
     context.arc(cx, cy, radius, 0, Math.PI * 2);
     context.lineWidth = 8;
-    context.strokeStyle = "#fecc00";
+    context.strokeStyle = GOLD;
     context.stroke();
 
     context.beginPath();
     context.arc(cx, cy, radius - 4, 0, Math.PI * 2);
     context.lineWidth = 2;
-    context.strokeStyle = "rgba(0,0,0,0.5)";
+    context.strokeStyle = "rgba(12,15,24,0.6)";
     context.stroke();
   }, []);
 
@@ -182,24 +187,25 @@ export function Wheel({ categories, currentPlayerName, disabled, onSpinEnd, onTi
           width={360}
           height={360}
           aria-label={strings.game.wheelLabel}
-          className="h-auto max-w-full cursor-pointer rounded-full shadow-2xl transition duration-300 hover:scale-[1.01]"
+          className="h-auto max-w-full cursor-pointer rounded-full shadow-[0_24px_60px_-30px_rgba(0,0,0,0.9)] transition duration-300 hover:scale-[1.01]"
         />
-        <div className="pointer-events-none absolute z-10 flex h-16 w-16 items-center justify-center rounded-full border-4 border-yellow-400 bg-slate-950 text-2xl font-extrabold text-yellow-300 shadow-xl">
+        <div className="pointer-events-none absolute z-10 flex h-16 w-16 items-center justify-center rounded-full border-4 border-gold-500 bg-ink-900 text-2xl font-extrabold text-gold-300 shadow-xl">
           ⚙️
         </div>
       </div>
 
       <div className="mt-3 flex w-full flex-col gap-2">
-        <button
-          type="button"
+        <Button
+          variant="primary"
+          size="lg"
           onClick={spin}
           disabled={disabled || spinning || categories.length === 0}
-          className="flex w-full items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-yellow-500 via-amber-500 to-yellow-600 px-6 py-3.5 text-sm font-black uppercase tracking-wider text-slate-950 shadow-lg transition hover:from-yellow-400 hover:to-amber-400 active:scale-95 disabled:cursor-not-allowed disabled:opacity-50 glow-yellow"
+          className="w-full font-display uppercase tracking-[0.14em]"
         >
           <Dices className="h-4 w-4" aria-hidden />
           {spinning ? strings.game.spinning : strings.game.spinButton}
-        </button>
-        <p className="h-5 text-center text-xs font-medium text-slate-300">
+        </Button>
+        <p className="h-5 text-center text-xs font-medium text-ink-400">
           {spinning ? strings.game.spinning : strings.game.spinNotice(currentPlayerName)}
         </p>
       </div>

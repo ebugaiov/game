@@ -1,193 +1,129 @@
 @import "tailwindcss";
 
 @theme {
-  --color-swe-blue: #004b87;
-  --color-swe-yellow: #fecc00;
-  --color-ind-dark: #070b14;
-  --color-ind-panel: #0f172a;
-  --color-ind-cyan: #06b6d4;
-  --color-ind-amber: #f59e0b;
-  --color-ind-orange: #f97316;
-  --color-ind-purple: #a855f7;
-  --color-ind-emerald: #10b981;
+  --color-ink-950: #0c0f18;
+  --color-ink-900: #121620;
+  --color-ink-850: #181b26;
+  --color-ink-800: #1c1e29;
+  --color-ink-750: #202330;
+  --color-ink-700: #252936;
+  --color-ink-650: #323845;
+  --color-ink-600: #3c424f;
+  --color-ink-550: #4e5564;
+  --color-ink-500: #6e7888;
+  --color-ink-400: #a3b3c7;
+  --color-ink-300: #b2c1d0;
+  --color-ink-200: #d7dee6;
+  --color-ink-100: #e8ecf1;
+
+  --color-gold-600: #d69e02;
+  --color-gold-500: #e5ae3c;
+  --color-gold-400: #e7b230;
+  --color-gold-300: #f6bd45;
+
+  --color-periwinkle-500: #5966f3;
+  --color-periwinkle-400: #7e88f7;
+  --color-periwinkle-300: #a2aafb;
+
+  --color-success-400: #57f287;
+  --color-success-300: #8df6af;
+  --color-danger-400: #ed4245;
+  --color-danger-300: #f58f91;
+  --color-hazard-400: #fb923c;
 }
 
 @theme inline {
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-fraunces), Georgia, "Times New Roman", serif;
 }
 
 html,
 body {
   min-height: 100vh;
-  background-color: #050811;
-  color: #f8fafc;
   margin: 0;
   padding: 0;
+  background-color: #202330;
+  color: #d7dee6;
 }
 
 body {
   overflow-x: hidden;
+  background-image:
+    linear-gradient(rgba(126, 136, 247, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(126, 136, 247, 0.045) 1px, transparent 1px);
+  background-size: 32px 32px;
+  background-attachment: fixed;
 }
 
-/* Swedish flag backdrop */
-.swedish-flag-container {
-  position: fixed;
-  inset: 0;
-  z-index: -20;
-  background-color: #003e73;
-  overflow: hidden;
-}
-.flag-yellow-h {
-  position: absolute;
-  top: 38%;
-  left: 0;
-  right: 0;
-  height: 24%;
-  background-color: #fecc00;
-  box-shadow: 0 0 50px rgba(254, 204, 0, 0.4);
-}
-.flag-yellow-v {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 28%;
-  width: 16%;
-  background-color: #fecc00;
-  box-shadow: 0 0 50px rgba(254, 204, 0, 0.4);
-}
-.flag-fabric-texture {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 50% 30%, rgba(255, 255, 255, 0.18) 0%, rgba(0, 0, 0, 0.7) 85%),
-    repeating-linear-gradient(
-      45deg,
-      rgba(0, 0, 0, 0.08) 0px,
-      rgba(0, 0, 0, 0.08) 2px,
-      transparent 2px,
-      transparent 5px
-    );
-  mix-blend-mode: overlay;
-}
-.flag-wave-anim {
-  position: absolute;
-  inset: -20%;
-  background: linear-gradient(
-    115deg,
-    transparent 0%,
-    rgba(6, 182, 212, 0.15) 25%,
-    rgba(0, 0, 0, 0.5) 50%,
-    rgba(254, 204, 0, 0.12) 75%,
-    transparent 100%
-  );
-  background-size: 200% 200%;
-  animation: flagWave 18s ease-in-out infinite alternate;
-  pointer-events: none;
-}
-@keyframes flagWave {
-  0% {
-    background-position: 0% 0%;
-    transform: scale(1) skewX(0deg);
-  }
-  50% {
-    background-position: 100% 100%;
-    transform: scale(1.02) skewX(1.5deg);
-  }
-  100% {
-    background-position: 0% 50%;
-    transform: scale(1) skewX(-1.5deg);
-  }
+::selection {
+  background-color: #7e88f7;
+  color: #121620;
 }
 
-.ui-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: -10;
-  background: rgba(4, 8, 19, 0.82);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-}
-
-.glass-panel {
-  background: rgba(15, 23, 42, 0.88);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.5);
-}
-.glass-panel-glow {
-  background: rgba(15, 23, 42, 0.92);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(6, 182, 212, 0.45);
-  box-shadow: 0 0 30px rgba(6, 182, 212, 0.25);
-}
-.glass-card {
-  background: rgba(30, 41, 59, 0.75);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.glow-yellow {
-  box-shadow: 0 0 25px rgba(254, 204, 0, 0.4);
-}
-.glow-cyan {
-  box-shadow: 0 0 25px rgba(6, 182, 212, 0.4);
-}
-
-@keyframes pulseTurn {
-  0%,
-  100% {
-    transform: scale(1);
-    box-shadow: 0 0 15px rgba(254, 204, 0, 0.4);
-  }
-  50% {
-    transform: scale(1.015);
-    box-shadow: 0 0 30px rgba(254, 204, 0, 0.85);
-  }
-}
-.active-turn-pulse {
-  animation: pulseTurn 2s infinite ease-in-out;
+/* Faint blueprint grid used behind every screen. */
+.blueprint-grid {
+  background-image:
+    linear-gradient(rgba(126, 136, 247, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(126, 136, 247, 0.07) 1px, transparent 1px);
+  background-size: 32px 32px;
+  -webkit-mask-image: radial-gradient(ellipse at 50% 15%, #000 10%, transparent 72%);
+  mask-image: radial-gradient(ellipse at 50% 15%, #000 10%, transparent 72%);
 }
 
 .wheel-pointer-wrapper {
   position: absolute;
   top: -14px;
   left: 50%;
-  transform: translateX(-50%);
   z-index: 30;
+  transform: translateX(-50%);
   pointer-events: none;
 }
+
 .wheel-pointer {
   width: 0;
   height: 0;
-  border-left: 18px solid transparent;
+  border-top: 32px solid #e5ae3c;
   border-right: 18px solid transparent;
-  border-top: 32px solid #fecc00;
+  border-left: 18px solid transparent;
   filter: drop-shadow(0px 6px 10px rgba(0, 0, 0, 0.9));
   transform-origin: top center;
   transition: transform 0.05s ease-out;
 }
+
 .wheel-pointer.tick-flex {
   transform: rotate(-16deg) scale(1.1);
 }
 
+@keyframes activeTurnRing {
+  0%,
+  100% {
+    box-shadow: 0 0 0 1px rgba(229, 174, 60, 0.28);
+  }
+  50% {
+    box-shadow: 0 0 0 3px rgba(229, 174, 60, 0.12);
+  }
+}
+
+.active-turn-pulse {
+  animation: activeTurnRing 2.4s ease-in-out infinite;
+}
+
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #070b14;
+  background: #121620;
 }
 ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #3c424f;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #06b6d4;
+  background: #7e88f7;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .flag-wave-anim,
   .active-turn-pulse {
     animation: none;
   }

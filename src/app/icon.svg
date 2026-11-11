@@ -1,17 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Industrins Svenska">
-  <defs>
-    <linearGradient id="badge" x1="6" y1="58" x2="58" y2="6" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#0891b2" />
-      <stop offset="0.55" stop-color="#fbbf24" />
-      <stop offset="1" stop-color="#facc15" />
-    </linearGradient>
-    <mask id="hub">
-      <rect width="64" height="64" fill="#ffffff" />
-      <circle cx="32" cy="32" r="5" fill="#000000" />
-    </mask>
-  </defs>
-  <rect width="64" height="64" rx="15" fill="url(#badge)" />
-  <g fill="#0f172a" mask="url(#hub)">
+  <mask id="hub">
+    <rect width="64" height="64" fill="#ffffff" />
+    <circle cx="32" cy="32" r="5" fill="#000000" />
+  </mask>
+  <rect width="64" height="64" rx="14" fill="#e5ae3c" />
+  <rect x="2" y="2" width="60" height="60" rx="12" fill="none" stroke="#d69e02" stroke-width="2" />
+  <g fill="#181b26" mask="url(#hub)">
     <circle cx="32" cy="32" r="13" />
     <rect x="29.25" y="15" width="5.5" height="8" rx="1.75" />
     <rect x="29.25" y="15" width="5.5" height="8" rx="1.75" transform="rotate(45 32 32)" />

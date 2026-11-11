@@ -1,14 +1,14 @@
 /**
- * The app mark shown next to the "Industrins Svenska" title in every page header.
- * The gear artwork and the gradient mirror `src/app/icon.svg` (the favicon).
+ * The app mark shown in every page header. The gold-on-ink gear mirrors
+ * `src/app/icon.svg` (the favicon).
  */
-export function AppLogo({ className = "h-12 w-12" }: { className?: string }) {
+export function AppLogo({ className = "h-10 w-10" }: { className?: string }) {
   return (
     <span
       aria-hidden
-      className={`flex shrink-0 items-center justify-center rounded-xl bg-gradient-to-tr from-cyan-600 via-amber-400 to-yellow-400 text-slate-950 shadow-lg glow-yellow ${className}`}
+      className={`flex shrink-0 items-center justify-center rounded-lg border-2 border-gold-600 bg-gold-500 text-ink-900 shadow-[0_10px_24px_-14px_rgba(229,174,60,0.9)] ${className}`}
     >
-      <svg viewBox="0 0 32 32" className="h-[60%] w-[60%]" fill="currentColor">
+      <svg viewBox="0 0 32 32" className="h-[62%] w-[62%]" fill="currentColor">
         <defs>
           <mask id="app-logo-hub">
             <rect width="32" height="32" fill="#ffffff" />

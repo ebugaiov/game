@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { usePrefersReducedMotion } from "./use-reduced-motion";
 
-const COLORS = ["#fecc00", "#005293", "#06b6d4", "#a855f7", "#10b981", "#ffffff"];
+const COLORS = ["#e5ae3c", "#7e88f7", "#57f287", "#efbb03", "#ed4245", "#e8ecf1"];
 
 type Particle = {
   x: number;

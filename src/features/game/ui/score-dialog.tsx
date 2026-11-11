@@ -3,7 +3,9 @@
 import { useState } from "react";
 import { PenLine, X } from "lucide-react";
 import type { PlayerSnapshot } from "../schemas";
+import { Button } from "./button";
 import { Modal } from "./modal";
+import { closeButtonClass, fieldClass, labelClass } from "./styles";
 import { strings } from "./strings";
 
 type ScoreDialogProps = {
@@ -46,22 +48,22 @@ export function ScoreDialog({ open, players, busy, error, onSave, onClose }: Sco
       onClose={onClose}
       dismissible
       labelledBy="score-dialog-title"
-      className="max-w-md border-cyan-400/40"
+      className="max-w-md"
     >
       <div className="space-y-4">
-        <div className="flex items-center justify-between border-b border-slate-700/60 pb-3">
+        <div className="flex items-center justify-between gap-2 border-b border-ink-600/80 pb-3">
           <h3
             id="score-dialog-title"
-            className="flex items-center gap-2 text-base font-bold text-white"
+            className="flex items-center gap-2 font-display text-xl font-bold text-ink-100"
           >
-            <PenLine className="h-4 w-4 text-cyan-400" aria-hidden />
+            <PenLine className="h-4 w-4 text-periwinkle-300" aria-hidden />
             {strings.scoreDialog.title}
           </h3>
           <button
             type="button"
             onClick={onClose}
             aria-label={strings.common.close}
-            className="text-lg font-bold text-slate-400 transition hover:text-white"
+            className={closeButtonClass}
           >
             <X className="h-5 w-5" aria-hidden />
           </button>
@@ -69,14 +71,14 @@ export function ScoreDialog({ open, players, busy, error, onSave, onClose }: Sco
 
         <div className="space-y-3">
           <div>
-            <label htmlFor="score-player" className="text-xs font-semibold text-slate-300">
+            <label htmlFor="score-player" className={labelClass}>
               {strings.scoreDialog.choosePlayer}
             </label>
             <select
               id="score-player"
               value={playerId}
               onChange={(event) => selectPlayer(event.target.value)}
-              className="mt-1 w-full rounded-xl border border-slate-700 bg-slate-900 px-3 py-2 text-xs text-white outline-none transition focus:border-cyan-400"
+              className={fieldClass}
             >
               {players.map((player) => (
                 <option key={player.id} value={player.id}>
@@ -87,7 +89,7 @@ export function ScoreDialog({ open, players, busy, error, onSave, onClose }: Sco
           </div>
 
           <div>
-            <label htmlFor="score-value" className="text-xs font-semibold text-slate-300">
+            <label htmlFor="score-value" className={labelClass}>
               {strings.scoreDialog.newScore}
             </label>
             <input
@@ -98,33 +100,24 @@ export function ScoreDialog({ open, players, busy, error, onSave, onClose }: Sco
               max={MAX_SCORE}
               value={score}
               onChange={(event) => setScore(event.target.value)}
-              className="mt-1 w-full rounded-xl border border-slate-700 bg-slate-900 px-3 py-2 text-xs text-white outline-none transition focus:border-cyan-400"
+              className={fieldClass}
             />
           </div>
         </div>
 
         {localError || error ? (
-          <p className="rounded-xl border border-rose-500/50 bg-rose-950/60 p-2.5 text-xs font-semibold text-rose-200">
+          <p className="rounded-lg border border-danger-400/50 bg-danger-400/10 p-3 text-sm font-semibold text-danger-300">
             {localError ?? error}
           </p>
         ) : null}
 
-        <div className="flex gap-2 pt-2">
-          <button
-            type="button"
-            onClick={save}
-            disabled={busy}
-            className="w-full rounded-xl bg-cyan-600 py-2.5 text-xs font-bold text-white shadow transition hover:bg-cyan-500 disabled:cursor-not-allowed disabled:opacity-60"
-          >
+        <div className="flex gap-2 pt-1">
+          <Button variant="primary" onClick={save} disabled={busy} className="w-full">
             {strings.scoreDialog.save}
-          </button>
-          <button
-            type="button"
-            onClick={onClose}
-            className="w-full rounded-xl bg-slate-800 py-2.5 text-xs font-bold text-slate-300 transition hover:bg-slate-700"
-          >
+          </Button>
+          <Button variant="secondary" onClick={onClose} className="w-full">
             {strings.scoreDialog.cancel}
-          </button>
+          </Button>
         </div>
       </div>
     </Modal>

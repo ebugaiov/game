@@ -17,7 +17,7 @@ Instructions for AI coding agents and humans working in this repo. Read fully be
 |---|---|
 | Runtime / package manager | Node 22 LTS, pnpm via corepack (pin `packageManager` in `package.json`) |
 | Framework | Next.js App Router, TypeScript `strict` |
-| Styling | Tailwind (installed, not CDN), `lucide-react` icons, Inter via `next/font` |
+| Styling | Tailwind (installed, not CDN), `lucide-react` icons, DM Sans + Fraunces via `next/font` |
 | Database | PostgreSQL 17 in Docker |
 | ORM / migrations | Drizzle ORM + drizzle-kit, driver `pg`. Validated with drizzle-orm 0.45, drizzle-kit 0.31, pg 8, zod 4 |
 | Validation | Zod at every boundary: HTTP bodies, env, seed files |
@@ -245,13 +245,13 @@ computeSpin({ currentAngle, sliceCount, rng })         -> { targetSlice, totalRo
 | `openRulesModal` | `ui/rules-dialog.tsx` (static Swedish content) |
 | `endGame`, `launchConfetti` | `ui/victory-dialog.tsx`, `ui/confetti.tsx` |
 | `tickTimer` | `ui/use-countdown.ts` (driven by `endsAt` + `serverTime`; calls `finish` at 0) |
-| Swedish flag background | `ui/flag-background.tsx` (pure CSS, same visuals) |
+| Blueprint background | `ui/blueprint-background.tsx` (pure CSS grid + vignette, boot.dev-inspired dark navy) |
 
 UI rules:
-- Keep the visual design: dark glass panels, Swedish flag backdrop, yellow/cyan accents. Move the custom colors from the legacy `tailwind.config` (`sweBlue #004b87`, `sweYellow #fecc00`, `indDark #070b14`, `indPanel #0f172a`, `indCyan #06b6d4`, `indAmber #f59e0b`, `indOrange #f97316`, `indPurple #a855f7`, `indEmerald #10b981`) into the Tailwind theme.
-- Palette class names must be **complete literal strings** (`"bg-cyan-500"`); Tailwind cannot detect assembled names.
+- Keep the boot.dev-inspired design: flat navy panels (`#202330` page, `#1c1e29` cards), serif display headings (Fraunces), DM Sans body, gold primary CTAs (`#e5ae3c`), periwinkle accents (`#7e88f7`), green/red answer states, 2px borders and subtle shadows. No glass blur, glow, gradient text or Swedish flag backdrop. Tokens live in `globals.css`.
+- Palette class names must be **complete literal strings** (`"bg-periwinkle-400"`); Tailwind cannot detect assembled names.
 - All Swedish UI copy in `ui/strings.ts`; no Swedish strings scattered through components.
-- Use native `<dialog>` (or Radix) with focus management and Esc handling; honor `prefers-reduced-motion` for the flag wave, pulse and confetti.
+- Use native `<dialog>` (or Radix) with focus management and Esc handling; honor `prefers-reduced-motion` for the active-turn ring, wheel and confetti.
 - Replace Font Awesome with `lucide-react`; no CDN scripts or styles.
 - State: server snapshot is the source of truth; local state only for dialogs, wheel animation, sound.
 

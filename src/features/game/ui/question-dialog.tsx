@@ -3,8 +3,9 @@
 import { CheckCircle2, Lightbulb, Sparkles } from "lucide-react";
 import { BASE_POINTS } from "../domain/rules";
 import type { AnswerResult, CategoryDto, PendingTurn, PlayerSnapshot } from "../schemas";
-import { DIFFICULTY_STYLES, playerColor, playerEmoji } from "./palette";
+import { Button } from "./button";
 import { Modal } from "./modal";
+import { categoryColor, DIFFICULTY_STYLES, playerColor, playerEmoji } from "./palette";
 import { difficultyLabel, strings } from "./strings";
 
 type QuestionDialogProps = {
@@ -23,7 +24,7 @@ type QuestionDialogProps = {
 const LETTERS = ["A", "B", "C", "D"];
 
 const OPTION_BASE =
-  "option-btn flex w-full items-center gap-3 rounded-2xl border p-3 text-left text-xs font-medium transition sm:text-sm";
+  "flex w-full items-center gap-3 rounded-lg border-2 p-3 text-left text-sm font-medium transition-colors";
 
 export function QuestionDialog({
   open,
@@ -43,6 +44,7 @@ export function QuestionDialog({
   const hiddenIds = new Set(turn.hiddenOptionIds);
   const fiftyFiftyUsed = turn.hiddenOptionIds.length > 0;
   const points = BASE_POINTS[question.difficulty];
+  const accent = category ? categoryColor(category) : null;
 
   return (
     <Modal
@@ -50,19 +52,19 @@ export function QuestionDialog({
       onClose={onNext}
       dismissible={result !== null}
       labelledBy="question-dialog-title"
-      className="max-w-2xl border-yellow-500/40"
+      className="max-w-2xl border-gold-600/40"
     >
       <div className="flex flex-col gap-4">
-        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-700/80 pb-3">
+        <div className="flex flex-wrap items-center justify-between gap-2 border-b border-ink-600/80 pb-3">
           <div className="flex flex-wrap items-center gap-2">
             <span
-              className="rounded-full border px-3 py-1 text-xs font-black uppercase tracking-wider"
+              className="rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider"
               style={
-                category
+                accent
                   ? {
-                      backgroundColor: `${category.color}25`,
-                      color: category.color,
-                      borderColor: `${category.color}60`,
+                      backgroundColor: `${accent}1f`,
+                      color: accent,
+                      borderColor: `${accent}66`,
                     }
                   : undefined
               }
@@ -70,42 +72,42 @@ export function QuestionDialog({
               {category ? `${category.icon} ${category.name}` : strings.game.categoryBadgeFallback}
             </span>
             <span
-              className={`rounded-full border px-3 py-1 text-xs font-black ${DIFFICULTY_STYLES[question.difficulty]}`}
+              className={`rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-wider ${DIFFICULTY_STYLES[question.difficulty]}`}
             >
               {difficultyLabel(question.difficulty)}
             </span>
           </div>
 
           <div className="flex items-center gap-2">
-            <button
-              type="button"
+            <Button
+              variant="periwinkle"
+              size="sm"
               onClick={onFiftyFifty}
               disabled={fiftyFiftyUsed || result !== null || busy}
-              className="flex items-center gap-1 rounded-xl border border-purple-400/50 bg-gradient-to-r from-purple-600 to-indigo-600 px-3 py-1 text-xs font-extrabold text-white shadow transition hover:from-purple-500 hover:to-indigo-500 active:scale-95 disabled:cursor-not-allowed disabled:opacity-40"
             >
               <Sparkles className="h-3.5 w-3.5" aria-hidden />
               {fiftyFiftyUsed ? strings.game.fiftyFiftyUsed : strings.game.fiftyFifty}
-            </button>
-            <span className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-2.5 py-1 text-xs font-bold text-amber-400">
+            </Button>
+            <span className="rounded-full border border-gold-600/40 bg-gold-500/10 px-2.5 py-1 text-xs font-bold text-gold-300">
               {fiftyFiftyUsed ? strings.game.fiftyFiftyPoints : strings.game.points(points)}
             </span>
           </div>
         </div>
 
-        <div className="flex items-center justify-between gap-2 rounded-xl border border-yellow-400/50 bg-slate-900 p-2.5">
-          <div className="flex items-center gap-2">
+        <div className="flex items-center justify-between gap-2 rounded-lg border border-ink-600 bg-ink-700 p-2.5">
+          <div className="flex min-w-0 items-center gap-2">
             {player ? (
               <span
-                className={`flex h-6 w-6 items-center justify-center rounded-md text-xs font-black text-slate-950 ${playerColor(player.seat).bg}`}
+                className={`flex h-6 w-6 shrink-0 items-center justify-center rounded text-xs font-black text-ink-900 ${playerColor(player.seat).bg}`}
               >
                 {playerEmoji(player.seat)}
               </span>
             ) : null}
-            <span className="text-xs font-bold uppercase tracking-wide text-yellow-300">
+            <span className="truncate text-[10px] font-bold uppercase tracking-[0.14em] text-ink-300">
               {strings.game.currentPlayerLabel} {player?.name ?? ""}
             </span>
           </div>
-          <span className="font-mono text-xs font-bold text-amber-400">
+          <span className="shrink-0 font-mono text-xs font-bold text-gold-300">
             {player ? `${player.score} ${strings.game.coinsWithIcon}` : ""}
           </span>
         </div>
@@ -113,11 +115,11 @@ export function QuestionDialog({
         <div>
           <h3
             id="question-dialog-title"
-            className="mb-2 text-base font-bold leading-snug text-slate-100 sm:text-lg"
+            className="mb-2 font-display text-xl font-bold leading-snug text-ink-100 sm:text-2xl"
           >
             {question.prompt}
           </h3>
-          <p className="rounded-xl border border-slate-800 bg-slate-900/80 p-2.5 text-xs font-medium text-yellow-200/90">
+          <p className="border-l-2 border-periwinkle-400/60 pl-3 text-sm font-medium text-ink-400">
             {strings.game.chooseOption}
           </p>
         </div>
@@ -129,19 +131,18 @@ export function QuestionDialog({
             const isSelected = selectedOptionId === option.id;
 
             let stateClass =
-              "border-slate-800 bg-slate-900 text-slate-100 hover:border-yellow-400/60 hover:bg-slate-800/80";
+              "border-ink-600 bg-ink-900 text-ink-200 hover:border-periwinkle-400/60 hover:bg-ink-850";
 
             if (hidden && !result) {
-              stateClass = "invisible border-slate-800 bg-slate-900 text-slate-100";
+              stateClass = "invisible border-ink-600 bg-ink-900 text-ink-200";
             } else if (result) {
               if (isCorrectOption) {
                 stateClass =
-                  "border-2 border-emerald-400 bg-emerald-950/90 font-bold text-emerald-200 shadow-lg ring-2 ring-emerald-400";
+                  "border-success-400 bg-success-400/10 font-bold text-success-300 shadow-[0_0_0_1px_rgba(87,242,135,0.35)]";
               } else if (isSelected) {
-                stateClass =
-                  "border-2 border-rose-400 bg-rose-950/90 font-medium text-rose-200 opacity-80";
+                stateClass = "border-danger-400 bg-danger-400/10 font-medium text-danger-300";
               } else {
-                stateClass = "border-slate-800 bg-slate-900 text-slate-100 opacity-60";
+                stateClass = "border-ink-600 bg-ink-900 text-ink-200 opacity-55";
               }
             }
 
@@ -153,12 +154,12 @@ export function QuestionDialog({
                 disabled={busy || result !== null || hidden}
                 className={`${OPTION_BASE} ${stateClass}`}
               >
-                <span className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-lg border border-slate-700 bg-slate-800 text-xs font-bold text-yellow-300">
+                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-ink-550 bg-ink-700 text-xs font-bold text-periwinkle-300">
                   {LETTERS[option.position] ?? option.position + 1}
                 </span>
                 <span className="flex-1 leading-snug">{option.text}</span>
                 {result && isCorrectOption ? (
-                  <CheckCircle2 className="h-4 w-4 flex-shrink-0 text-emerald-300" aria-hidden />
+                  <CheckCircle2 className="h-4 w-4 shrink-0 text-success-300" aria-hidden />
                 ) : null}
               </button>
             );
@@ -166,26 +167,24 @@ export function QuestionDialog({
         </div>
 
         {result ? (
-          <div className="flex flex-col gap-2 rounded-2xl border border-indigo-400/50 bg-indigo-950/90 p-4">
-            <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-indigo-300">
+          <div className="rounded-lg border-l-4 border-periwinkle-400 bg-periwinkle-400/5 p-4">
+            <div className="mb-1.5 flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.14em] text-periwinkle-300">
               <Lightbulb className="h-4 w-4" aria-hidden />
               {strings.game.explanationTitle}
             </div>
-            <p className="text-xs leading-relaxed text-slate-200 sm:text-sm">
-              {result.explanation}
-            </p>
+            <p className="text-sm leading-relaxed text-ink-200">{result.explanation}</p>
           </div>
         ) : null}
 
         {result ? (
-          <div className="flex items-center justify-end pt-2">
-            <button
-              type="button"
+          <div className="flex items-center justify-end pt-1">
+            <Button
+              variant="primary"
               onClick={onNext}
-              className="rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 px-6 py-3 text-xs font-black uppercase tracking-wider text-white shadow-lg transition hover:from-emerald-400 hover:to-teal-500 active:scale-95 sm:text-sm"
+              className="font-display uppercase tracking-[0.12em]"
             >
               {strings.game.nextPlayer}
-            </button>
+            </Button>
           </div>
         ) : null}
       </div>

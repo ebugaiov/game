@@ -1,22 +1,21 @@
 import Link from "next/link";
 import { AppLogo } from "@/features/game/ui/app-logo";
-import { FlagBackground } from "@/features/game/ui/flag-background";
+import { buttonStyles } from "@/features/game/ui/button";
+import { PageShell } from "@/features/game/ui/page-shell";
 import { strings } from "@/features/game/ui/strings";
 
 export default function NotFound() {
   return (
-    <div className="relative flex min-h-screen flex-col items-center justify-center p-4 text-slate-100">
-      <FlagBackground />
-      <div className="glass-panel w-full max-w-md rounded-3xl p-8 text-center">
-        <AppLogo className="mx-auto mb-4 h-16 w-16" />
-        <h1 className="text-xl font-black text-yellow-300">{strings.common.gameNotFound}</h1>
-        <Link
-          href="/"
-          className="mt-6 inline-block rounded-xl bg-gradient-to-r from-yellow-500 via-amber-500 to-yellow-600 px-5 py-2.5 text-xs font-black uppercase tracking-wider text-slate-950 shadow-lg transition hover:from-yellow-400 hover:to-amber-400"
-        >
+    <PageShell maxWidth="max-w-md">
+      <div className="flex flex-1 flex-col items-center justify-center py-20 text-center">
+        <AppLogo className="mb-5 h-16 w-16" />
+        <h1 className="font-display text-2xl font-bold text-ink-100">
+          {strings.common.gameNotFound}
+        </h1>
+        <Link href="/" className={`${buttonStyles("primary", "md")} mt-6`}>
           {strings.history.backHome}
         </Link>
       </div>
-    </div>
+    </PageShell>
   );
 }
