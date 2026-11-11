@@ -118,7 +118,7 @@ export function SetupForm() {
         </div>
       </header>
 
-      <main className="mx-auto flex w-full max-w-2xl flex-1 items-start justify-center">
+      <main className="mx-auto flex w-full max-w-3xl flex-1 items-start justify-center">
         <form
           onSubmit={submit}
           className="glass-panel flex w-full flex-col gap-5 rounded-3xl p-5 shadow-2xl sm:p-6"
@@ -150,24 +150,6 @@ export function SetupForm() {
                 </option>
               ))}
             </select>
-          </div>
-
-          <div>
-            <span className="mb-1.5 block text-xs font-bold uppercase text-slate-300">
-              {strings.setup.presetsLabel}
-            </span>
-            <div className="grid grid-cols-4 gap-2">
-              {[2, 4, 8, 12].map((count) => (
-                <button
-                  key={count}
-                  type="button"
-                  onClick={() => setNames(presetNames(count))}
-                  className="rounded-xl border border-slate-600 bg-slate-800 py-2 text-xs font-bold text-slate-200 transition hover:bg-slate-700"
-                >
-                  {strings.setup.presetCount(count)}
-                </button>
-              ))}
-            </div>
           </div>
 
           <div>
